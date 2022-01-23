@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
@@ -8,11 +8,7 @@ import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 })
 export class MealComponent implements OnInit {
 
-  ingredients: Ingredient[] = [
-    { name: 'гречка', weight: 60 },
-    { name: 'хліб', weight: 100 },
-    { name: 'йогурт', weight: 400 }
-  ]
+  @Input() ingredients?: Ingredient[];
 
   constructor() { }
 
