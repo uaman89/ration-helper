@@ -1,5 +1,5 @@
 Meal:
 <app-ingredient
   *ngFor="let ingredient of ingredients"
-  data="ingredient"
+  [params]="ingredient"
 ></app-ingredient>

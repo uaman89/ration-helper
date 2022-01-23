@@ -9,7 +9,7 @@ import { Ingredient } from '../../interfaces/ingredient.interface';
 })
 export class IngredientComponent implements OnInit {
 
-  @Input() data?: Ingredient;
+  @Input() params?: Ingredient;
 
   constructor() { }
 
