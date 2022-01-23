@@ -1,3 +1,14 @@
 :host {
-  background-color: ;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ingredient-list {
+  display: flex;
+  flex-grow: 1;
+}
+
+.ingredient {
+  flex-grow: 1;
 }

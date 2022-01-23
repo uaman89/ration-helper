@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MealPlannerComponent } from './meal-planner.component';
+import { NgModule } from '@angular/core';
 import { MealModule } from '../meal/meal.module';
+import { MealPlannerComponent } from './meal-planner.component';
+
 
 @NgModule({
   declarations: [MealPlannerComponent],

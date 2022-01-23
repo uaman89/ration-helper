@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
   selector: 'app-meal-planner',
   templateUrl: './meal-planner.component.html',
-  styleUrls: ['./meal-planner.component.scss']
+  styleUrls: ['./meal-planner.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MealPlannerComponent implements OnInit {
 
@@ -17,6 +18,10 @@ export class MealPlannerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onRemoveIngredient(index: number){
+    this.selectedIngredients.splice(index, 1);
   }
 
 }

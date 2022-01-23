@@ -1,4 +1,13 @@
 <h3>Selected Ingredients:</h3>
 <div class="selected-ingredients">
-  <app-meal [ingredients]="selectedIngredients"></app-meal>
+  <app-meal
+    [ingredients]="selectedIngredients"
+    (ingredientRemoved)="onRemoveIngredient($event)"
+  ></app-meal>
+  <span
+    *ngIf="!selectedIngredients?.length"
+    class="message"
+  >
+    No selected ingredients
+  </span>
 </div>
