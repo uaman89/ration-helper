@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.set-item::after {
+  content: "/";
+  display: inline-block;
+  margin: 0 0.5em;
+
+  &:last-child {
+    display: none;
+    content: none;
+  }
+}
