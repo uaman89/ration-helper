@@ -4,10 +4,8 @@
     [ingredients]="selectedIngredients"
     (ingredientRemoved)="onRemoveIngredient($event)"
   ></app-meal>
-  <span
-    *ngIf="!selectedIngredients?.length"
-    class="message"
-  >
+
+  <span *ngIf="!selectedIngredients?.length" class="message">
     No selected ingredients
   </span>
 </div>

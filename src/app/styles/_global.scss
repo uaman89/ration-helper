@@ -1,11 +1,13 @@
 @import "/src/app/styles/colors";
 
-.button {
+.icon-button {
   border-radius: 4px;
   border: none;
   background: transparent;
-  padding: 4px 8px;
+  padding: 2px;
   color: black;
+  display: flex;
+  align-items: center;
 
   &:hover {
     background: $grey-200;

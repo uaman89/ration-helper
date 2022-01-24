@@ -3,13 +3,18 @@
   flex-wrap: wrap;
 }
 
-.set-item::after {
-  content: "/";
-  display: inline-block;
-  margin: 0 0.5em;
+.set-item {
+  display: flex;
+  align-items: center;
 
-  &:last-child {
-    display: none;
-    content: none;
+  &::after {
+    content: "/";
+    display: inline-block;
+    margin: 0 0.5em;
+
+    &:last-child {
+      display: none;
+      content: none;
+    }
   }
 }
