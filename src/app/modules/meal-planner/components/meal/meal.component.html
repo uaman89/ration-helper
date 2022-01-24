@@ -1,0 +1,16 @@
+<div
+  *ngFor="let ingredient of ingredients; let i = index"
+  class="ingredient-list"
+>
+  <app-ingredient
+    [params]="ingredient"
+    class="ingredient"
+  ></app-ingredient>
+  <button
+    (click)="onRemoveIngredient(i)"
+    class="button"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
