@@ -1,7 +1,7 @@
 <span *ngIf="label">{{label}}:</span>
 
 <app-ingredient
-  *ngFor="let item of set"
+  *ngFor="let item of group"
   [params]="item"
   class="set-item"
 ></app-ingredient>

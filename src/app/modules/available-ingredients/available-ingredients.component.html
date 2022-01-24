@@ -1,1 +1,5 @@
-<app-ingredients-group></app-ingredients-group>
+<h3>Available Ingredients:</h3>
+
+<div *ngFor="let item of groupList">
+  <app-ingredients-group [label]="item.label" [group]="item.group"></app-ingredients-group>
+</div>
