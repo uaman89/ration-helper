@@ -4,9 +4,9 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
+import { IngredientPlan, SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
   selector: 'app-meal-planner',
@@ -15,9 +15,9 @@ import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MealPlannerComponent implements OnInit {
-  @Input() selectedIngredients?: IngredientPlan[];
+  @Input() selectedIngredients?: SelectedIngredientPlan[];
 
-  @Output() changed = new EventEmitter<IngredientPlan[]>();
+  @Output() changed = new EventEmitter<SelectedIngredientPlan[]>();
 
   constructor() {}
 

@@ -1,8 +1,8 @@
 <app-meal-planner
-  [selectedIngredients]="selectedIngredients"
+  [selectedIngredients]="(selectedIngredients$ | async)!"
   (changed)="onSelectedIngredientsChange($event)"
 ></app-meal-planner>
 
 <app-available-ingredients
-  [plan]="rationPlan"
+  [selectedPlan]="rationPlan"
 ></app-available-ingredients>

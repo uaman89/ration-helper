@@ -2,10 +2,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
-import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
+import { startWith, takeUntil } from 'rxjs';
+import {
+  Ingredient,
+  IngredientPlan,
+  SelectedIngredientPlan,
+} from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
+import { PlannerContainerService } from '../planner-container/planner-container.service';
 
 @Component({
   selector: 'app-available-ingredients',
@@ -14,9 +20,65 @@ import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.inte
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvailableIngredientsComponent implements OnInit {
-  @Input() plan?: IngredientsGroup[];
+  @Input() selectedPlan?: IngredientsGroup[];
 
-  constructor() {}
+  availableIngredients: IngredientsGroup[] = [];
 
-  ngOnInit(): void {}
+  constructor(private plannerService: PlannerContainerService) {}
+
+  ngOnInit(): void {
+    this.plannerService.selectedIngredients$
+      .pipe(
+        startWith(this.plannerService.selectedIngredients)
+        // todo: add destriyed$
+        // takeUntil(this.destroyed$)
+      )
+      .subscribe((ingredients) => this.setAvailableIngredients(ingredients));
+  }
+
+  setAvailableIngredients(ingredients: SelectedIngredientPlan[]): void {
+    if (!this.selectedPlan) {
+      return;
+    }
+
+    const selectedMap = ingredients.reduce<PlanIngredientsMap>(
+      (obj, ingredient) => {
+        const { id, groupId } = ingredient;
+        obj[groupId] = obj[groupId] || {};
+        obj[groupId][id] = ingredient;
+        return obj;
+      },
+      {}
+    );
+
+    this.availableIngredients = [];
+    this.selectedPlan.forEach((planGroup) => {
+      if (!selectedMap[planGroup.id]) {
+        return;
+      }
+      const group = { ...planGroup, ingredients: [] } as IngredientsGroup;
+      planGroup.ingredients.forEach((planned) => {
+        const selected = selectedMap[planGroup.id][planned.id];
+        if (!selected) {
+          group.ingredients.push(planned);
+          return;
+        }
+
+        const weightDiff = planned.weight - selected.weight;
+        if (weightDiff > 0) {
+          group.ingredients.push({
+            ...planned,
+            weight: weightDiff,
+          });
+        }
+      });
+      this.availableIngredients.push(group);
+    });
+  }
+}
+
+interface PlanIngredientsMap {
+  [groupId: number]: {
+    [ingredientId: number]: IngredientPlan;
+  };
 }

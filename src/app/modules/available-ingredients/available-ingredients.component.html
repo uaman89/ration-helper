@@ -1,9 +1,9 @@
 <h3>Available Ingredients:</h3>
 
-<div *ngFor="let item of plan">
+<div *ngFor="let group of availableIngredients">
   <app-ingredients-group
-    [label]="item.label"
-    [ingredients]="item.ingredients"
+    [label]="group.label"
+    [ingredients]="group.ingredients"
     class="group"
   ></app-ingredients-group>
 </div>

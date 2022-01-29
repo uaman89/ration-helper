@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlannerContainerService {
-
   public get selectedIngredients() {
     return this._selectedIngredients.value;
+  }
+
+  public get selectedIngredients$(): Observable<SelectedIngredientPlan[]> {
+    return this._selectedIngredients.asObservable();
   }
 
   private _selectedIngredients = new BehaviorSubject<SelectedIngredientPlan[]>(
