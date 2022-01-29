@@ -9,7 +9,7 @@ import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 export class IngredientsGroupComponent implements OnInit {
 
   @Input() label?: string;
-  @Input() group?: Ingredient[];
+  @Input() ingredients?: Ingredient[];
 
   constructor() { }
 

@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
 
@@ -6,25 +11,33 @@ import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.inte
   selector: 'app-available-ingredients',
   templateUrl: './available-ingredients.component.html',
   styleUrls: ['./available-ingredients.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvailableIngredientsComponent implements OnInit {
-  @Input()
-  plan?: IngredientsGroup[];
-
-  @Input()
-  set selectedIngredients(ingredients: Ingredient[]) {
-
+  @Input() set plan(plan: IngredientsGroup[]) {
+    this.updateIngredientPlanMap(plan);
   }
 
-  availableIngredients: IngredientsGroup[] = [];
+  @Input()
+  set selectedIngredients(ingredients: Ingredient[]) {}
+
+  private ingredientGroupMap = new Map<string, number>();
+  private availableIngredients: IngredientsGroup[] = [];
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  updateAbailbleIngredients( selectedIngredients: Ingredient[] ){
-    selectedIngredients.forEach( ingredient => {
-
+  updateIngredientPlanMap(plan: IngredientsGroup[]) {
+    this.ingredientGroupMap.clear();
+    plan.forEach((group) => {
+      group.ingredients.forEach((ingredient) =>
+        this.ingredientGroupMap.set(ingredient.name, group.id)
+      );
     });
+  }
+
+  updateAbailbleIngredients(selectedIngredients: Ingredient[]) {
+    selectedIngredients.forEach((ingredient) => {});
   }
 }

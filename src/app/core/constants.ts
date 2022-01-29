@@ -9,8 +9,8 @@ export const defaultingredient: Ingredient = {
 export const sashaSet: IngredientsGroup[] = [
   {
     label: '1',
-    groupId: 1,
-    group: [
+    id: 1,
+    ingredients: [
       { name: 'бобові', weight: 60 },
       { name: 'соя', weight: 60 },
       { name: 'вівснка', weight: 60 },
@@ -28,8 +28,8 @@ export const sashaSet: IngredientsGroup[] = [
   },
   {
     label: '2',
-    groupId: 2,
-    group: [
+    id: 2,
+    ingredients: [
       { name: 'молоко', weight: 400 },
       { name: 'кефір', weight: 400 },
       { name: 'йогурт', weight: 400 },
@@ -37,8 +37,8 @@ export const sashaSet: IngredientsGroup[] = [
   },
   {
     label: '3',
-    groupId: 3,
-    group: [
+    id: 3,
+    ingredients: [
       { name: 'овочі', weight: 600 },
       { name: 'гриби', weight: 600 },
     ],
