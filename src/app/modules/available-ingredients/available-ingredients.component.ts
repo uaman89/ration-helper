@@ -37,7 +37,9 @@ export class AvailableIngredientsComponent implements OnInit {
 
     const selectedMap = ingredients.reduce<SelectedIngredientsMap>(
       (obj, ingredient) => {
-        obj[ingredient.groupId] = ingredient;
+        const { groupId } = ingredient;
+        obj[groupId] = obj[groupId] || [];
+        obj[groupId].push(ingredient);
         return obj;
       },
       {}
@@ -46,32 +48,42 @@ export class AvailableIngredientsComponent implements OnInit {
     this.availableIngredients = [];
 
     this.selectedPlan.forEach((planGroup) => {
-      let group: IngredientsGroup;
-
       if (!selectedMap[planGroup.id]) {
-        group = this.copyGroup(planGroup);
-      } else {
-        group = this.copyGroup(planGroup, false);
-
-        const selected = selectedMap[planGroup.id];
-        const planned = planGroup.ingredients.find((d) => selected.id);
-
-        if (!planned) {
-          console.warn(`can't find planned item that matches to selected one`);
-          return;
-        }
-
-        const weightDiff = planned.weight - selected.weight;
-        if (weightDiff > 0) {
-          const proportion = weightDiff / planned.weight;
-          group.ingredients = planGroup.ingredients.map((plan) => {
-            return {
-              ...plan,
-              weight: Math.ceil(plan.weight * proportion)
-            };
-          });
-        }
+        this.availableIngredients.push(this.copyGroup(planGroup));
+        return;
       }
+      const group: IngredientsGroup = this.copyGroup(planGroup, false);
+
+      // get every selected ingr. which belongs to current group
+      // calc it's proportion
+      // sum proportions of every selected ingr.
+      // if proportion > 1 - no availble ingredients
+      // if < 1, then fill ingredients list with planGroup ingredients and multiply it's weights on (1 - totalProportion)
+
+      const totalSelectedPropportion = selectedMap[planGroup.id].reduce<number>(
+        (total, selected) => {
+          const planned = planGroup.ingredients.find((d) => selected.id);
+          if (!planned) {
+            console.warn('should not happen');
+            return total;
+          }
+          const proportion = selected.weight / planned.weight;
+
+          return total + proportion;
+        },
+        0
+      );
+
+      if (totalSelectedPropportion < 1) {
+        const leftProportion = 1 - totalSelectedPropportion;
+        group.ingredients = planGroup.ingredients.map((plan) => {
+          return {
+            ...plan,
+            weight: Math.ceil(plan.weight * leftProportion),
+          };
+        });
+      }
+
       this.availableIngredients.push(group);
     });
   }
@@ -93,7 +105,7 @@ export class AvailableIngredientsComponent implements OnInit {
   }
 }
 
-// for one group can be only one ingredient
+// for one group can be only one full ingredient, or a few but with proportionally reduced weigth
 interface SelectedIngredientsMap {
-  [groupId: number]: IngredientPlan;
+  [groupId: number]: IngredientPlan[];
 }
