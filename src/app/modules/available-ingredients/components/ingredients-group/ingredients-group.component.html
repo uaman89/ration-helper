@@ -6,5 +6,6 @@
 <app-ingredient
   *ngFor="let item of ingredients"
   [params]="item"
+  (click)="onClickItem(item)"
   class="set-item"
 ></app-ingredient>

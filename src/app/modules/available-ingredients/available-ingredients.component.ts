@@ -9,6 +9,7 @@ import {
   SelectedIngredientPlan,
 } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
+import { PlannerContainerService } from '../planner-container/planner-container.service';
 
 @Component({
   selector: 'app-available-ingredients',
@@ -25,7 +26,7 @@ export class AvailableIngredientsComponent implements OnInit {
 
   availableIngredients: IngredientsGroup[] = [];
 
-  constructor() {}
+  constructor(private plannerService: PlannerContainerService) {}
 
   ngOnInit(): void {}
 
@@ -72,7 +73,11 @@ export class AvailableIngredientsComponent implements OnInit {
     });
   }
 
-  copyGroup(
+  onPickIngredient(ingredientPlan: IngredientPlan, groupId: number) {
+    this.plannerService.addIngredientToSelected({ ...ingredientPlan, groupId });
+  }
+
+  private copyGroup(
     group: IngredientsGroup,
     cloneIngredients = true
   ): IngredientsGroup {

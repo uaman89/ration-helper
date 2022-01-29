@@ -4,6 +4,7 @@
   <app-ingredients-group
     [label]="group.label"
     [ingredients]="group.ingredients"
+    (ingredientClick)="onPickIngredient($event, group.id)"
     class="group"
   ></app-ingredients-group>
 </div>
