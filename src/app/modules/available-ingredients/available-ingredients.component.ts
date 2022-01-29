@@ -2,11 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import {
   IngredientPlan,
-  SelectedIngredientPlan
+  SelectedIngredientPlan,
 } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
 
@@ -46,27 +46,42 @@ export class AvailableIngredientsComponent implements OnInit {
 
     this.availableIngredients = [];
     this.selectedPlan.forEach((planGroup) => {
-      if (!selectedMap[planGroup.id]) {
-        return;
-      }
-      const group = { ...planGroup, ingredients: [] } as IngredientsGroup;
-      planGroup.ingredients.forEach((planned) => {
-        const selected = selectedMap[planGroup.id][planned.id];
-        if (!selected) {
-          group.ingredients.push(planned);
-          return;
-        }
+      let group: IngredientsGroup;
 
-        const weightDiff = planned.weight - selected.weight;
-        if (weightDiff > 0) {
-          group.ingredients.push({
-            ...planned,
-            weight: weightDiff,
-          });
-        }
-      });
+      if (!selectedMap[planGroup.id]) {
+        group = this.copyGroup(planGroup);
+      } else {
+        group = this.copyGroup(planGroup, false);
+        planGroup.ingredients.forEach((planned) => {
+          const selected = selectedMap[planGroup.id][planned.id];
+          if (!selected) {
+            group.ingredients.push(planned);
+            return;
+          }
+
+          const weightDiff = planned.weight - selected.weight;
+          if (weightDiff > 0) {
+            group.ingredients.push({
+              ...planned,
+              weight: weightDiff,
+            });
+          }
+        });
+      }
       this.availableIngredients.push(group);
     });
+  }
+
+  copyGroup(
+    group: IngredientsGroup,
+    cloneIngredients = true
+  ): IngredientsGroup {
+    const clone = { ...group, ingredients: [] } as IngredientsGroup;
+    if (cloneIngredients) {
+      clone.ingredients = group.ingredients.map((data) => ({ ...data }));
+    }
+
+    return clone;
   }
 }
 
