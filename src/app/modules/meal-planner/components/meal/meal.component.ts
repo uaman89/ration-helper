@@ -1,24 +1,25 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
+import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
+import { trackById } from 'src/app/shared/track-by.shared';
 
 @Component({
   selector: 'app-meal',
   templateUrl: './meal.component.html',
-  styleUrls: ['./meal.component.scss']
+  styleUrls: ['./meal.component.scss'],
 })
 export class MealComponent implements OnInit {
 
-  @Input() ingredients?: IngredientPlan[];
+  @Input() ingredients?: SelectedIngredientPlan[];
 
-  @Output() ingredientRemoved = new EventEmitter<number>();
+  @Output() ingredientRemoved = new EventEmitter<SelectedIngredientPlan>();
 
-  constructor() { }
+  readonly trackById = trackById;
 
-  ngOnInit(): void {
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  onRemoveIngredient(ingredient: SelectedIngredientPlan) {
+    this.ingredientRemoved.emit(ingredient);
   }
-
-  onRemoveIngredient( index: number ) {
-    this.ingredientRemoved.emit(index);
-  }
-
 }

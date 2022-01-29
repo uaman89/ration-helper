@@ -29,7 +29,7 @@ export class PlannerContainerService {
 
   removeIngredientFromSelected(groupId: number, ingredientId: number) {
     const updatedList = this.selectedIngredients.filter((d) => {
-      return d.groupId !== groupId && d.id !== ingredientId;
+      return !(d.groupId === groupId && d.id === ingredientId);
     });
     this._selectedIngredients.next(updatedList);
   }

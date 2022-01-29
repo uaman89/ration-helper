@@ -1,5 +1,5 @@
 <div
-  *ngFor="let ingredient of ingredients; let i = index"
+  *ngFor="let ingredient of ingredients; trackBy: trackById"
   class="meal-item"
 >
   <app-ingredient
@@ -7,7 +7,7 @@
       class="ingredient"
     ></app-ingredient>
     <button
-      (click)="onRemoveIngredient(i)"
+      (click)="onRemoveIngredient(ingredient)"
       class="icon-button delete-meal-btn"
     >
       <mat-icon>delete</mat-icon>

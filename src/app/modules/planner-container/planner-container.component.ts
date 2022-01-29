@@ -9,6 +9,7 @@ import { PlannerContainerService } from './planner-container.service';
   selector: 'app-planner-container',
   templateUrl: './planner-container.component.html',
   styleUrls: ['./planner-container.component.scss'],
+  // todo: add onPUsh
 })
 export class PlannerContainerComponent implements OnInit {
   rationPlan = sashaSet;
@@ -32,7 +33,7 @@ export class PlannerContainerComponent implements OnInit {
     selectedMock.forEach((mock) => this.plannerService.addIngredientToSelected(mock));
   }
 
-  onSelectedIngredientsChange(newList: SelectedIngredientPlan[]) {
-    //this.plannerService.removeIngredientFromSelected(groupId, id);
+  onRemoveIngredient({groupId, id}: SelectedIngredientPlan) {
+    this.plannerService.removeIngredientFromSelected(groupId, id);
   }
 }
