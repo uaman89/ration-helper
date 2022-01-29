@@ -2,24 +2,25 @@
 
 :host {
   display: flex;
-  flex-wrap: wrap;
 }
+
 
 .label {
   font-weight: bold;
-  margin-right: 1em;
+  padding: 3px 1em 1em 0;
 }
 
-.set-item {
+.ingredients {
   display: flex;
-  align-items: center;
-  border-radius: 50% / 1em;
-  background-color: $c-blue-100;
+  flex-wrap: wrap;
+}
 
+.ingredient {
   display: flex;
   align-items: center;
+  background-color: $c-blue-100;
   border-radius: 25px;
-  background-color: #88bfff;
-  padding: 3px 11px;
+  padding: 8px 16px;
   margin: 0 4px 4px 0;
+  font-size: 16px;
 }

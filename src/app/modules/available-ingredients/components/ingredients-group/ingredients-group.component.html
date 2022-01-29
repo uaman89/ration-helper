@@ -1,13 +1,17 @@
-<span
+<div
   *ngIf="label"
   class="label"
->{{ label }}:</span>
+>
+  {{ label }}:
+</div>
 
-<app-ingredient
-  *ngFor="let item of ingredients"
-  [params]="item"
-  (click)="onClickItem(item)"
-  class="set-item"
-></app-ingredient>
+<div class="ingredients">
+  <app-ingredient
+    *ngFor="let item of ingredients"
+    [params]="item"
+    (click)="onClickItem(item)"
+    class="ingredient"
+  ></app-ingredient>
 
-<span *ngIf="!ingredients?.length">✔ completed</span>
+  <span *ngIf="!ingredients?.length">✔ completed</span>
+</div>
