@@ -35,17 +35,16 @@ export class AvailableIngredientsComponent implements OnInit {
       return;
     }
 
-    const selectedMap = ingredients.reduce<PlanIngredientsMap>(
+    const selectedMap = ingredients.reduce<SelectedIngredientsMap>(
       (obj, ingredient) => {
-        const { id, groupId } = ingredient;
-        obj[groupId] = obj[groupId] || {};
-        obj[groupId][id] = ingredient;
+        obj[ingredient.groupId] = ingredient;
         return obj;
       },
       {}
     );
 
     this.availableIngredients = [];
+
     this.selectedPlan.forEach((planGroup) => {
       let group: IngredientsGroup;
 
@@ -53,21 +52,25 @@ export class AvailableIngredientsComponent implements OnInit {
         group = this.copyGroup(planGroup);
       } else {
         group = this.copyGroup(planGroup, false);
-        planGroup.ingredients.forEach((planned) => {
-          const selected = selectedMap[planGroup.id][planned.id];
-          if (!selected) {
-            group.ingredients.push(planned);
-            return;
-          }
 
-          const weightDiff = planned.weight - selected.weight;
-          if (weightDiff > 0) {
-            group.ingredients.push({
-              ...planned,
-              weight: weightDiff,
-            });
-          }
-        });
+        const selected = selectedMap[planGroup.id];
+        const planned = planGroup.ingredients.find((d) => selected.id);
+
+        if (!planned) {
+          console.warn(`can't find planned item that matches to selected one`);
+          return;
+        }
+
+        const weightDiff = planned.weight - selected.weight;
+        if (weightDiff > 0) {
+          const proportion = weightDiff / planned.weight;
+          group.ingredients = planGroup.ingredients.map((plan) => {
+            return {
+              ...plan,
+              weight: Math.ceil(plan.weight * proportion)
+            };
+          });
+        }
       }
       this.availableIngredients.push(group);
     });
@@ -90,8 +93,7 @@ export class AvailableIngredientsComponent implements OnInit {
   }
 }
 
-interface PlanIngredientsMap {
-  [groupId: number]: {
-    [ingredientId: number]: IngredientPlan;
-  };
+// for one group can be only one ingredient
+interface SelectedIngredientsMap {
+  [groupId: number]: IngredientPlan;
 }
