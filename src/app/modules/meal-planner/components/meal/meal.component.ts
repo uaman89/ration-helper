@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
+import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
   selector: 'app-meal',
@@ -8,7 +8,7 @@ import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 })
 export class MealComponent implements OnInit {
 
-  @Input() ingredients?: Ingredient[];
+  @Input() ingredients?: IngredientPlan[];
 
   @Output() ingredientRemoved = new EventEmitter<number>();
 

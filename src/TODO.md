@@ -22,6 +22,7 @@ selected ingredients list:
   display category as a list item
   hide ingedient which are alredy picked for 'meal'
   on click category - open Ingredient Selector
+  use PlannerService to keep selected ingredients (groupId, IngredientId, weight)
 
 "Ingredient Selector":
   list of ingredients of selected category

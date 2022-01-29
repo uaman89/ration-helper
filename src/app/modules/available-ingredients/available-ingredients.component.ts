@@ -4,7 +4,7 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
+import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
 
 @Component({
@@ -19,7 +19,7 @@ export class AvailableIngredientsComponent implements OnInit {
   }
 
   @Input()
-  set selectedIngredients(ingredients: Ingredient[]) {}
+  set selectedIngredients(ingredients: IngredientPlan[]) {}
 
   private ingredientGroupMap = new Map<string, number>();
   private availableIngredients: IngredientsGroup[] = [];
@@ -37,7 +37,7 @@ export class AvailableIngredientsComponent implements OnInit {
     });
   }
 
-  updateAbailbleIngredients(selectedIngredients: Ingredient[]) {
+  updateAbailbleIngredients(selectedIngredients: IngredientPlan[]) {
     selectedIngredients.forEach((ingredient) => {});
   }
 }

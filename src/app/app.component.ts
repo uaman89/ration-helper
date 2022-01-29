@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { sashaSet } from 'src/app/core/constants';
-import { Ingredient } from './core/interfaces/ingredient.interface';
+import { sashaSet } from 'src/app/core/constants/constants';
+import { IngredientPlan } from './core/interfaces/ingredient.interface';
 import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
 
 @Component({

@@ -1,7 +1,7 @@
-import { Ingredient } from "./ingredient.interface";
+import { IngredientPlan } from "./ingredient.interface";
 
 export interface IngredientsGroup {
   label: string;
   id: number;
-  ingredients: Ingredient[];
+  ingredients: IngredientPlan[];
 }

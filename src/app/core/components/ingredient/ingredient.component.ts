@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { defaultingredient as defaultIngredient } from '../../constants';
-import { Ingredient } from '../../interfaces/ingredient.interface';
+import { defaultingredient as defaultIngredient } from '../../constants/constants';
+import { IngredientPlan } from '../../interfaces/ingredient.interface';
 
 @Component({
   selector: 'app-ingredient',
@@ -9,7 +9,7 @@ import { Ingredient } from '../../interfaces/ingredient.interface';
 })
 export class IngredientComponent implements OnInit {
 
-  @Input() params?: Ingredient;
+  @Input() params?: IngredientPlan;
 
   constructor() { }
 

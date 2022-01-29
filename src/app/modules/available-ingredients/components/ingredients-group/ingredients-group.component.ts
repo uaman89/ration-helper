@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
+import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
   selector: 'app-ingredients-group',
@@ -9,7 +9,7 @@ import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 export class IngredientsGroupComponent implements OnInit {
 
   @Input() label?: string;
-  @Input() ingredients?: Ingredient[];
+  @Input() ingredients?: IngredientPlan[];
 
   constructor() { }
 
