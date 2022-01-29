@@ -3,6 +3,7 @@ import { IngredientPlan } from '../interfaces/ingredient.interface';
 import { IngredientsGroup } from '../interfaces/ingredients-group.interace';
 
 export const defaultingredient: IngredientPlan = {
+  id: 0,
   name: 'невідомий продукт',
   weight: 0,
 };

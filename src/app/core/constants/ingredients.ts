@@ -1,22 +1,22 @@
-import { Ingredient } from "../interfaces/ingredient.interface"
+import { Ingredient } from '../interfaces/ingredient.interface';
 
 export class INGREDIENTS {
-  readonly static beans:      Ingredient = { id: 1, name:  'бобові' },
-  readonly static soy:        Ingredient = { id: 2, name:  'соя' },
-  readonly static oat:        Ingredient = { id: 3, name:  'вівснка' },
-  readonly static bulgur:     Ingredient = { id: 4, name:  'булгур' },
-  readonly static buckweat:   Ingredient = { id: 5, name:  'гречка' },
-  readonly static rice:       Ingredient = { id: 6, name:  'рис' },
-  readonly static cereals:    Ingredient = { id: 7, name:  'крупи' },
-  readonly static seitan:     Ingredient = { id: 8, name:  'сейтан' },
-  readonly static flour:      Ingredient = { id: 9, name:  'борошно' },
-  readonly static bread:      Ingredient = { id: 10, name: 'хліб' },
-  readonly static pita:       Ingredient = { id: 11, name: 'лаваш' },
-  readonly static corn:       Ingredient = { id: 12, name: 'кукурудза' },
-  readonly static potato:     Ingredient = { id: 13, name: 'картопля' },
-  readonly static milk:       Ingredient = { id: 14, name: 'молоко' },
-  readonly static kefir:      Ingredient = { id: 15, name: 'кефір' },
-  readonly static yogurt:     Ingredient = { id: 16, name: 'йогурт' },
-  readonly static vegetables: Ingredient = { id: 17, name: 'овочі' },
-  readonly static mushrooms:  Ingredient = { id: 18, name: 'гриби' },
-};
+  static readonly beans: Ingredient = { id: 1, name: 'бобові' };
+  static readonly soy: Ingredient = { id: 2, name: 'соя' };
+  static readonly oat: Ingredient = { id: 3, name: 'вівснка' };
+  static readonly bulgur: Ingredient = { id: 4, name: 'булгур' };
+  static readonly buckweat: Ingredient = { id: 5, name: 'гречка' };
+  static readonly rice: Ingredient = { id: 6, name: 'рис' };
+  static readonly cereals: Ingredient = { id: 7, name: 'крупи' };
+  static readonly seitan: Ingredient = { id: 8, name: 'сейтан' };
+  static readonly flour: Ingredient = { id: 9, name: 'борошно' };
+  static readonly bread: Ingredient = { id: 10, name: 'хліб' };
+  static readonly pita: Ingredient = { id: 11, name: 'лаваш' };
+  static readonly corn: Ingredient = { id: 12, name: 'кукурудза' };
+  static readonly potato: Ingredient = { id: 13, name: 'картопля' };
+  static readonly milk: Ingredient = { id: 14, name: 'молоко' };
+  static readonly kefir: Ingredient = { id: 15, name: 'кефір' };
+  static readonly yogurt: Ingredient = { id: 16, name: 'йогурт' };
+  static readonly vegetables: Ingredient = { id: 17, name: 'овочі' };
+  static readonly mushrooms: Ingredient = { id: 18, name: 'гриби' };
+}
