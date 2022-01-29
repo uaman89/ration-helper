@@ -2,16 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
+  OnInit
 } from '@angular/core';
-import { startWith, takeUntil } from 'rxjs';
 import {
-  Ingredient,
   IngredientPlan,
-  SelectedIngredientPlan,
+  SelectedIngredientPlan
 } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
-import { PlannerContainerService } from '../planner-container/planner-container.service';
 
 @Component({
   selector: 'app-available-ingredients',
@@ -22,19 +19,15 @@ import { PlannerContainerService } from '../planner-container/planner-container.
 export class AvailableIngredientsComponent implements OnInit {
   @Input() selectedPlan?: IngredientsGroup[];
 
+  @Input() set selectedIngredients(ingredients: SelectedIngredientPlan[]) {
+    this.setAvailableIngredients(ingredients);
+  }
+
   availableIngredients: IngredientsGroup[] = [];
 
-  constructor(private plannerService: PlannerContainerService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.plannerService.selectedIngredients$
-      .pipe(
-        startWith(this.plannerService.selectedIngredients)
-        // todo: add destriyed$
-        // takeUntil(this.destroyed$)
-      )
-      .subscribe((ingredients) => this.setAvailableIngredients(ingredients));
-  }
+  ngOnInit(): void {}
 
   setAvailableIngredients(ingredients: SelectedIngredientPlan[]): void {
     if (!this.selectedPlan) {
