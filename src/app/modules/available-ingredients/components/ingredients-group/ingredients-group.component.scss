@@ -1,3 +1,5 @@
+@import "/src/app/styles/colors";
+
 :host {
   display: flex;
   flex-wrap: wrap;
@@ -11,15 +13,13 @@
 .set-item {
   display: flex;
   align-items: center;
+  border-radius: 50% / 1em;
+  background-color: $c-blue-100;
 
-  &::after {
-    content: "/";
-    display: inline-block;
-    margin: 0 0.5em;
-
-    &:last-child {
-      display: none;
-      content: none;
-    }
-  }
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  background-color: #88bfff;
+  padding: 3px 11px;
+  margin: 0 4px 4px 0;
 }
