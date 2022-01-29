@@ -6,3 +6,7 @@ export interface Ingredient {
 export interface IngredientPlan extends Ingredient {
   weight: number;
 }
+
+export interface SelectedIngredientPlan extends IngredientPlan {
+  groupId: number;
+}
