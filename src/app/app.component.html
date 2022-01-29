@@ -1,4 +1,10 @@
 <div class="container">
-  <app-meal-planner></app-meal-planner>
-  <app-available-ingredients></app-available-ingredients>
+  <app-meal-planner
+    [selectedIngredients]="selectedIngredients"
+    (changed)="onSelectedIngredientsChange($event)"
+  ></app-meal-planner>
+  <app-available-ingredients
+    [plan]="rationPlan"
+    [selectedIngredients]="selectedIngredients"
+  ></app-available-ingredients>
 </div>

@@ -1,27 +1,33 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
   selector: 'app-meal-planner',
   templateUrl: './meal-planner.component.html',
   styleUrls: ['./meal-planner.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MealPlannerComponent implements OnInit {
+  @Input() selectedIngredients?: Ingredient[];
 
-  selectedIngredients: Ingredient[] = [
-    { name: 'гречка', weight: 60 },
-    { name: 'хліб', weight: 100 },
-    { name: 'йогурт', weight: 400 }
-  ];
+  @Output() changed = new EventEmitter<Ingredient[]>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  onRemoveIngredient(index: number){
+  onRemoveIngredient(index: number) {
+    if (!this.selectedIngredients) {
+      return;
+    }
     this.selectedIngredients.splice(index, 1);
+    this.changed.emit(this.selectedIngredients);
   }
-
 }

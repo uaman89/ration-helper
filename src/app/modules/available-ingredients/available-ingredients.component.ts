@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { sashaSet } from 'src/app/core/constants';
 import { Ingredient } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
 
@@ -11,10 +10,10 @@ import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.inte
 export class AvailableIngredientsComponent implements OnInit {
 
   @Input()
-  plan: IngredientsGroup[] = sashaSet;
+  plan?: IngredientsGroup[];
 
   @Input()
-  selectedIngredients
+  selectedIngredients?: Ingredient[];
 
   constructor() { }
 
