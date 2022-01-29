@@ -1,0 +1,9 @@
+<app-meal-planner
+  [selectedIngredients]="selectedIngredients"
+  (changed)="onSelectedIngredientsChange($event)"
+></app-meal-planner>
+
+<app-available-ingredients
+  [plan]="rationPlan"
+  [selectedIngredients]="selectedIngredients"
+></app-available-ingredients>

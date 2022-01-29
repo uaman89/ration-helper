@@ -5,19 +5,26 @@ import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.inte
 @Component({
   selector: 'app-available-ingredients',
   templateUrl: './available-ingredients.component.html',
-  styleUrls: ['./available-ingredients.component.scss']
+  styleUrls: ['./available-ingredients.component.scss'],
 })
 export class AvailableIngredientsComponent implements OnInit {
-
   @Input()
   plan?: IngredientsGroup[];
 
   @Input()
-  selectedIngredients?: Ingredient[];
+  set selectedIngredients(ingredients: Ingredient[]) {
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
+  availableIngredients: IngredientsGroup[] = [];
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  updateAbailbleIngredients( selectedIngredients: Ingredient[] ){
+    selectedIngredients.forEach( ingredient => {
+
+    });
+  }
 }

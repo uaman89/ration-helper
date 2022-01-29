@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { sashaSet } from 'src/app/core/constants';
 import { Ingredient } from './core/interfaces/ingredient.interface';
+import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +11,5 @@ import { Ingredient } from './core/interfaces/ingredient.interface';
 export class AppComponent {
   title = 'Ration Helper';
 
-  rationPlan = sashaSet;
-
-  selectedIngredients: Ingredient[] = [
-    { name: 'гречка', weight: 60 },
-    { name: 'хліб', weight: 100 },
-    { name: 'йогурт', weight: 400 },
-  ];
-
-  onSelectedIngredientsChange(selectedIngredients: Ingredient[]) {
-    this.selectedIngredients = selectedIngredients;
-  }
 
 }
