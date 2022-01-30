@@ -1,19 +1,15 @@
 import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Inject,
+  ChangeDetectionStrategy, Component, Inject, OnInit
 } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import {
-  MatDialogConfig,
   MatDialogRef,
-  MAT_DIALOG_DATA,
+  MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
