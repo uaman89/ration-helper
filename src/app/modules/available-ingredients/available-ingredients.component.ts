@@ -4,12 +4,17 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   IngredientPlan,
   SelectedIngredientPlan,
 } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
 import { PlannerContainerService } from '../planner-container/planner-container.service';
+import {
+  SelectIngredientDialogComponent,
+  SelectIngredientDialogData,
+} from './components/select-ingredient-dialog/select-ingredient-dialog.component';
 
 @Component({
   selector: 'app-available-ingredients',
@@ -20,15 +25,19 @@ import { PlannerContainerService } from '../planner-container/planner-container.
 export class AvailableIngredientsComponent implements OnInit {
   @Input() selectedPlan?: IngredientsGroup[];
 
-  @Input() set selectedIngredients(ingredients: SelectedIngredientPlan[]) {
-    this.setAvailableIngredients(ingredients);
-  }
-
   availableIngredients: IngredientsGroup[] = [];
 
-  constructor(private plannerService: PlannerContainerService) {}
+  constructor(
+    private plannerService: PlannerContainerService,
+    private dialog: MatDialog
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.plannerService.selectedIngredients$
+      //todo: add takeUntill
+      .pipe()
+      .subscribe((items) => this.setAvailableIngredients(items));
+  }
 
   setAvailableIngredients(ingredients: SelectedIngredientPlan[]): void {
     if (!this.selectedPlan) {
@@ -89,7 +98,20 @@ export class AvailableIngredientsComponent implements OnInit {
   }
 
   onPickIngredient(ingredientPlan: IngredientPlan, groupId: number) {
-    this.plannerService.addIngredientToSelected({ ...ingredientPlan, groupId });
+    const data: SelectIngredientDialogData = {
+      ingredient: ingredientPlan,
+    };
+    this.dialog
+      .open(SelectIngredientDialogComponent, { data })
+      .afterClosed()
+      .subscribe((isConfirmed) => {
+        if (isConfirmed) {
+          this.plannerService.addIngredientToSelected({
+            ...ingredientPlan,
+            groupId,
+          });
+        }
+      });
   }
 
   private copyGroup(

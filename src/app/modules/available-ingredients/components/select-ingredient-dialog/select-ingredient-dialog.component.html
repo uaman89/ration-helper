@@ -1,0 +1,30 @@
+<h3>Add {{ data.ingredient.name }}</h3>
+<mat-divider></mat-divider>
+
+<div class="form" [formGroup]="form">
+  <mat-form-field appearance="standard">
+    <mat-label>weight:</mat-label>
+    <input
+      [value]="data.ingredient.weight"
+      formControlName="ingredient"
+      matInput
+      placeholder="Enter desired weight"
+      type="number"
+      [step]="inputStep"
+    />
+    <span matSuffix>g</span>
+    <mat-error
+      *ngIf="c('ingredient').errors"
+    >{{getErrorMessage(c('ingredient'))}}</mat-error>
+  </mat-form-field>
+</div>
+
+<button
+  (click)="onConfirm()"
+  [disabled]="form.invalid"
+  mat-raised-button
+  color="primary"
+  class="confirm-button"
+  >
+  Add: {{ data.ingredient.name }} ({{c('ingredient').value}})
+</button>

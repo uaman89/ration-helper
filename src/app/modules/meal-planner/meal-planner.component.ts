@@ -6,7 +6,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { IngredientPlan, SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
+import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
   selector: 'app-meal-planner',
