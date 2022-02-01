@@ -1,6 +1,7 @@
 <app-meal-planner
   [selectedIngredients]="(selectedIngredients$ | async)!"
   (ingredientRemoved)="onRemoveIngredient($event)"
+  class="selected-ingredients"
 ></app-meal-planner>
 
 <app-available-ingredients
