@@ -1,5 +1,7 @@
 import { Ingredient } from '../interfaces/ingredient.interface';
 
+
+// why do I need this?
 export class INGREDIENTS {
   static readonly beans: Ingredient = { id: 1, name: 'бобові' };
   static readonly soy: Ingredient = { id: 2, name: 'соя' };
@@ -19,4 +21,24 @@ export class INGREDIENTS {
   static readonly yogurt: Ingredient = { id: 16, name: 'йогурт' };
   static readonly vegetables: Ingredient = { id: 17, name: 'овочі' };
   static readonly mushrooms: Ingredient = { id: 18, name: 'гриби' };
+  static readonly eggs: Ingredient = { id: 19, name: 'яйця' };
+  static readonly cottageChees: Ingredient = { id: 20, name: 'сир 5% (зернистий)' };
+  static readonly oil: Ingredient = { id: 20, name: 'олія' };
+  static readonly avocado: Ingredient = { id: 21, name: 'авокадо' };
+  static readonly olives: Ingredient = { id: 22, name: 'оливки' };
+  static readonly mustard: Ingredient = { id: 23, name: 'гірчиця' };
+  static readonly sourСream: Ingredient = { id: 24, name: 'сметана 15%' };
+  static readonly butter: Ingredient = { id: 25, name: 'масло' };
+  static readonly freshCheese: Ingredient = { id: 26, name: `м'які сири` };
+  static readonly semiHardCheese: Ingredient = { id: 27, name: 'тверді сири' };
+  static readonly fruits: Ingredient = { id: 28, name: 'фрукти та ягоди' };
+  static readonly banana: Ingredient = { id: 29, name: 'банан' };
+  static readonly nuts: Ingredient = { id: 30, name: 'горіхи' };
+  static readonly sweets: Ingredient = { id: 31, name: 'солодке' };
+  static readonly honey: Ingredient = { id: 32, name: 'мед' };
+  static readonly fish: Ingredient = { id: 33, name: 'риба' };
+  static readonly seaFood: Ingredient = { id: 34, name: 'море-продукти' };
+  static readonly macaroni: Ingredient = { id: 35, name: 'макарони' };
+  static readonly crispbread: Ingredient = { id: 36, name: 'хлібці' };
+  static readonly driedFruits: Ingredient = { id: 37, name: 'сухофрукти' };
 }
