@@ -44,7 +44,7 @@ export class SelectIngredientDialogComponent implements OnInit {
   }
 
   onConfirm() {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
   c(key: string): FormControl {

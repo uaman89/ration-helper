@@ -1,10 +1,13 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
 import {
   IngredientPlan,
   SelectedIngredientPlan,
@@ -22,24 +25,28 @@ import {
   styleUrls: ['./available-ingredients.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AvailableIngredientsComponent implements OnInit {
+export class AvailableIngredientsComponent implements OnInit, OnDestroy {
   @Input() selectedPlan?: IngredientsGroup[];
 
   availableIngredients: IngredientsGroup[] = [];
 
+  destroyed$ = new Subject<void>();
+
   constructor(
     private plannerService: PlannerContainerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.plannerService.selectedIngredients$
       //todo: add takeUntill
-      .pipe()
+      .pipe(takeUntil(this.destroyed$))
       .subscribe((items) => this.setAvailableIngredients(items));
   }
 
   setAvailableIngredients(ingredients: SelectedIngredientPlan[]): void {
+
     if (!this.selectedPlan) {
       return;
     }
@@ -95,6 +102,7 @@ export class AvailableIngredientsComponent implements OnInit {
 
       this.availableIngredients.push(group);
     });
+    this.cdr.markForCheck();
   }
 
   onPickIngredient(ingredientPlan: IngredientPlan, groupId: number) {
@@ -124,6 +132,11 @@ export class AvailableIngredientsComponent implements OnInit {
     }
 
     return clone;
+  }
+
+  ngOnDestroy(): void {
+      this.destroyed$.next();
+      this.destroyed$.complete();
   }
 }
 

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { sashaSet } from 'src/app/core/constants/constants';
 import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 import { PlannerContainerService } from './planner-container.service';
@@ -7,7 +12,7 @@ import { PlannerContainerService } from './planner-container.service';
   selector: 'app-planner-container',
   templateUrl: './planner-container.component.html',
   styleUrls: ['./planner-container.component.scss'],
-  // todo: add onPUsh
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlannerContainerComponent implements OnInit {
   rationPlan = sashaSet;

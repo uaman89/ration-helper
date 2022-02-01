@@ -7,22 +7,22 @@ import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.inter
 })
 export class PlannerContainerService {
   public get selectedIngredients() {
-    return this._selectedIngredients.value;
+    return this._selectedIngredients$.value;
   }
 
   public get selectedIngredients$(): Observable<SelectedIngredientPlan[]> {
-    return this._selectedIngredients.asObservable();
+    return this._selectedIngredients$.asObservable();
   }
 
-  private _selectedIngredients = new BehaviorSubject<SelectedIngredientPlan[]>(
+  private _selectedIngredients$ = new BehaviorSubject<SelectedIngredientPlan[]>(
     []
   );
 
   constructor() {}
 
   addIngredientToSelected(newIngredient: SelectedIngredientPlan) {
-    this._selectedIngredients.next([
-      ...this.selectedIngredients,
+    this._selectedIngredients$.next([
+      ...this._selectedIngredients$.value,
       newIngredient,
     ]);
   }
@@ -31,6 +31,6 @@ export class PlannerContainerService {
     const updatedList = this.selectedIngredients.filter((d) => {
       return !(d.groupId === groupId && d.id === ingredientId);
     });
-    this._selectedIngredients.next(updatedList);
+    this._selectedIngredients$.next(updatedList);
   }
 }

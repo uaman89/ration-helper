@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
