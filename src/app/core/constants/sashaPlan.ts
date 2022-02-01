@@ -52,7 +52,7 @@ export const SASHA_PLAN: IngredientsGroup[] = [
     ],
   },
   {
-    label: '4 (овочі)',
+    label: '4',
     id: 4,
     ingredients: [
       { ...INGREDIENTS['vegetables'], weight: 600 },
@@ -60,7 +60,7 @@ export const SASHA_PLAN: IngredientsGroup[] = [
     ],
   },
   {
-    label: '5 (рослинні жири)',
+    label: '5',
     id: 5,
     ingredients: [
       { ...INGREDIENTS.oil, weight: 2 },
@@ -70,7 +70,7 @@ export const SASHA_PLAN: IngredientsGroup[] = [
     ],
   },
   {
-    label: '6 (тваринні жири)',
+    label: '6',
     id: 6,
     ingredients: [
       { ...INGREDIENTS.sourСream, weight: 60 },
@@ -80,7 +80,7 @@ export const SASHA_PLAN: IngredientsGroup[] = [
     ],
   },
   {
-    label: '7 (фрукти)',
+    label: '7',
     id: 7,
     ingredients: [
       { ...INGREDIENTS.fruits, weight: 400 },
