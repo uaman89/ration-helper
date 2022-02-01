@@ -1,16 +1,16 @@
 import {
-  ChangeDetectionStrategy, Component, Inject, OnInit
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
 } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
@@ -39,15 +39,25 @@ export class SelectIngredientDialogComponent implements OnInit {
         [Validators.max(weight), Validators.min(this.MIN_WEIGHT)],
       ],
     });
-    const divider = weight > 100 ? 3 : 2;
-    this.inputStep = Math.round(weight / divider);
+
+    this.inputStep = weight >= 100 ? 50 : weight >= 50 ? 10 : 5;
+
+    const weightControl = this.form.get('weight');
+    weightControl?.valueChanges.subscribe((value) => {
+      if (value > weight) {
+        weightControl.patchValue(weight);
+      }
+      if (value < this.MIN_WEIGHT) {
+        weightControl.patchValue(this.MIN_WEIGHT);
+      }
+    });
   }
 
   onConfirm() {
     const selectedWeight = this.form.get('weight')?.value;
     this.dialogRef.close({
       ...this.data.ingredient,
-      weight: selectedWeight
+      weight: selectedWeight,
     } as IngredientPlan);
   }
 
