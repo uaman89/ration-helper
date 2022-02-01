@@ -6,7 +6,7 @@
     <mat-label>weight:</mat-label>
     <input
       [value]="data.ingredient.weight"
-      formControlName="ingredient"
+      formControlName="weight"
       matInput
       placeholder="Enter desired weight"
       type="number"
@@ -14,8 +14,8 @@
     />
     <span matSuffix>g</span>
     <mat-error
-      *ngIf="c('ingredient').errors"
-    >{{getErrorMessage(c('ingredient'))}}</mat-error>
+      *ngIf="form.get('weight')?.errors"
+    >{{getErrorMessage(c('weight'))}}</mat-error>
   </mat-form-field>
 </div>
 
@@ -26,5 +26,5 @@
   color="primary"
   class="confirm-button"
   >
-  Add: {{ data.ingredient.name }} ({{c('ingredient').value}})
+  Add: {{ data.ingredient.name }} ({{c('weight').value}}g)
 </button>

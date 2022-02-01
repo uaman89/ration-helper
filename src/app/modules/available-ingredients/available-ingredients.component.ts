@@ -18,6 +18,7 @@ import {
   SelectIngredientDialogComponent,
   SelectIngredientDialogData,
 } from './components/select-ingredient-dialog/select-ingredient-dialog.component';
+import { getCompletionProportion } from './helpers/available-ingredients.helpers';
 
 @Component({
   selector: 'app-available-ingredients',
@@ -40,13 +41,11 @@ export class AvailableIngredientsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.plannerService.selectedIngredients$
-      //todo: add takeUntill
       .pipe(takeUntil(this.destroyed$))
       .subscribe((items) => this.setAvailableIngredients(items));
   }
 
   setAvailableIngredients(ingredients: SelectedIngredientPlan[]): void {
-
     if (!this.selectedPlan) {
       return;
     }
@@ -64,30 +63,16 @@ export class AvailableIngredientsComponent implements OnInit, OnDestroy {
     this.availableIngredients = [];
 
     this.selectedPlan.forEach((planGroup) => {
-      if (!selectedMap[planGroup.id]) {
+      const selectedPlanIngredients = selectedMap[planGroup.id];
+      if (!selectedPlanIngredients) {
         this.availableIngredients.push(this.copyGroup(planGroup));
         return;
       }
       const group: IngredientsGroup = this.copyGroup(planGroup, false);
 
-      // get every selected ingr. which belongs to current group
-      // calc it's proportion
-      // sum proportions of every selected ingr.
-      // if proportion > 1 - no availble ingredients
-      // if < 1, then fill ingredients list with planGroup ingredients and multiply it's weights on (1 - totalProportion)
-
-      const totalSelectedPropportion = selectedMap[planGroup.id].reduce<number>(
-        (total, selected) => {
-          const planned = planGroup.ingredients.find((d) => selected.id);
-          if (!planned) {
-            console.warn('should not happen');
-            return total;
-          }
-          const proportion = selected.weight / planned.weight;
-
-          return total + proportion;
-        },
-        0
+      const totalSelectedPropportion = getCompletionProportion(
+        selectedPlanIngredients,
+        planGroup.ingredients
       );
 
       if (totalSelectedPropportion < 1) {
@@ -112,12 +97,9 @@ export class AvailableIngredientsComponent implements OnInit, OnDestroy {
     this.dialog
       .open(SelectIngredientDialogComponent, { data })
       .afterClosed()
-      .subscribe((isConfirmed) => {
-        if (isConfirmed) {
-          this.plannerService.addIngredientToSelected({
-            ...ingredientPlan,
-            groupId,
-          });
+      .subscribe((data) => {
+        if (data) {
+          this.plannerService.addIngredientToSelected({ ...data, groupId });
         }
       });
   }
@@ -135,8 +117,8 @@ export class AvailableIngredientsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.destroyed$.next();
-      this.destroyed$.complete();
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }
 

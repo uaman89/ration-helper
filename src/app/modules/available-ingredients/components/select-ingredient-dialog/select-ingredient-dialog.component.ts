@@ -34,7 +34,7 @@ export class SelectIngredientDialogComponent implements OnInit {
   ngOnInit(): void {
     const { weight } = this.data.ingredient;
     this.form = this.fb.group({
-      ingredient: [
+      weight: [
         weight,
         [Validators.max(weight), Validators.min(this.MIN_WEIGHT)],
       ],
@@ -44,7 +44,11 @@ export class SelectIngredientDialogComponent implements OnInit {
   }
 
   onConfirm() {
-    this.dialogRef.close(true);
+    const selectedWeight = this.form.get('weight')?.value;
+    this.dialogRef.close({
+      ...this.data.ingredient,
+      weight: selectedWeight
+    } as IngredientPlan);
   }
 
   c(key: string): FormControl {
