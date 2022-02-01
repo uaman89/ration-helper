@@ -1,3 +1,11 @@
+<div>
+  <mat-select [(ngModel)]="currentPlan" required>
+    <mat-option [value]="availablePlans['yuliia']">Юля</mat-option>
+    <mat-option [value]="availablePlans['sasha']">Саша</mat-option>
+  </mat-select>
+</div>
+
+
 <app-meal-planner
   [selectedIngredients]="(selectedIngredients$ | async)!"
   (ingredientRemoved)="onRemoveIngredient($event)"
@@ -5,5 +13,5 @@
 ></app-meal-planner>
 
 <app-available-ingredients
-  [selectedPlan]="rationPlan"
+  [selectedPlan]="currentPlan"
 ></app-available-ingredients>

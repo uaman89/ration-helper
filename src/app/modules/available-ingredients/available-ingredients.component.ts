@@ -3,8 +3,10 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
+  SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
@@ -26,7 +28,9 @@ import { getCompletionProportion } from './helpers/available-ingredients.helpers
   styleUrls: ['./available-ingredients.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AvailableIngredientsComponent implements OnInit, OnDestroy {
+export class AvailableIngredientsComponent
+  implements OnInit, OnChanges, OnDestroy
+{
   @Input() selectedPlan?: IngredientsGroup[];
 
   availableIngredients: IngredientsGroup[] = [];
@@ -43,6 +47,12 @@ export class AvailableIngredientsComponent implements OnInit, OnDestroy {
     this.plannerService.selectedIngredients$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((items) => this.setAvailableIngredients(items));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedPlan']) {
+      this.setAvailableIngredients(this.plannerService.selectedIngredients);
+    }
   }
 
   setAvailableIngredients(ingredients: SelectedIngredientPlan[]): void {

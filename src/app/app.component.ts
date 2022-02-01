@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { sashaSet } from 'src/app/core/constants/constants';
-import { IngredientPlan } from './core/interfaces/ingredient.interface';
-import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +7,4 @@ import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
 })
 export class AppComponent {
   title = 'Ration Helper';
-
-
 }
