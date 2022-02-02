@@ -1,9 +1,12 @@
 :host {
   display: block;
+  min-width: 210px;
 }
 
 .form {
   padding: 1em 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .weight-field {
@@ -13,4 +16,5 @@
 .confirm-button {
   display: block;
   margin: 0 auto;
+  min-width: 172px;
 }

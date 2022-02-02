@@ -13,10 +13,18 @@
       [step]="inputStep"
     />
     <span matSuffix>g</span>
-    <mat-error
-      *ngIf="form.get('weight')?.errors"
-    >{{getErrorMessage(c('weight'))}}</mat-error>
+    <mat-error *ngIf="form.get('weight')?.errors">{{
+      getErrorMessage(c("weight"))
+    }}</mat-error>
   </mat-form-field>
+
+    <mat-slider
+      [min]="0"
+      [max]="data.ingredient.weight"
+      [step]="inputStep"
+      [value]="data.ingredient.weight"
+      (change)="onSliderChange($event)"
+    ></mat-slider>
 </div>
 
 <button
@@ -25,6 +33,6 @@
   mat-raised-button
   color="primary"
   class="confirm-button"
-  >
-  Add: {{ data.ingredient.name }} ({{c('weight').value}}g)
+>
+  Add: {{ data.ingredient.name }} ({{ c("weight").value }}g)
 </button>

@@ -11,6 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSliderChange } from '@angular/material/slider';
 import { debounceTime } from 'rxjs';
 import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
@@ -41,7 +42,7 @@ export class SelectIngredientDialogComponent implements OnInit {
       ],
     });
 
-    this.inputStep = weight >= 100 ? 50 : weight >= 50 ? 10 : 5;
+    this.inputStep = weight  >= 40 ? Math.round(weight/4) : 5;
   }
 
   onConfirm() {
@@ -66,6 +67,10 @@ export class SelectIngredientDialogComponent implements OnInit {
       default:
         return 'invalid weight';
     }
+  }
+
+  onSliderChange({ value }: MatSliderChange) {
+    this.form.get('weight')?.patchValue(value);
   }
 }
 
