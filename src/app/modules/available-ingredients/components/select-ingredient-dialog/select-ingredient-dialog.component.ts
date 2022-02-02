@@ -11,6 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { debounceTime } from 'rxjs';
 import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
@@ -41,16 +42,6 @@ export class SelectIngredientDialogComponent implements OnInit {
     });
 
     this.inputStep = weight >= 100 ? 50 : weight >= 50 ? 10 : 5;
-
-    const weightControl = this.form.get('weight');
-    weightControl?.valueChanges.subscribe((value) => {
-      if (value > weight) {
-        weightControl.patchValue(weight);
-      }
-      if (value < this.MIN_WEIGHT) {
-        weightControl.patchValue(this.MIN_WEIGHT);
-      }
-    });
   }
 
   onConfirm() {
