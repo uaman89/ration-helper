@@ -14,6 +14,7 @@ export const YULIIA_PLAN: IngredientsGroup[] = [
       { ...INGREDIENTS.rice, weight: 40 },
       { ...INGREDIENTS.cereals, weight: 40 },
       { ...INGREDIENTS.seitan, weight: 40 },
+      { ...INGREDIENTS.macaroni, weight: 40 },
       { ...INGREDIENTS.flour, weight: 40 },
       { ...INGREDIENTS.bread, weight: 60 },
       { ...INGREDIENTS.pita, weight: 60 },
@@ -36,6 +37,7 @@ export const YULIIA_PLAN: IngredientsGroup[] = [
     ingredients: [
       { ...INGREDIENTS.eggs, weight: 6 }, // todo add ability use not weight but  (pcs / g)
       { ...INGREDIENTS.fish, weight: 280 },
+      { ...INGREDIENTS.fatFish, weight: 200 },
       { ...INGREDIENTS.seaFood, weight: 340 },
       { ...INGREDIENTS.seitan, weight: 100 },
     ],
@@ -83,6 +85,7 @@ export const YULIIA_PLAN: IngredientsGroup[] = [
       { ...INGREDIENTS.cottageChees, weight: 140 },
       { ...INGREDIENTS.eggs, weight: 3 }, // todo add ability use not weight but  (pcs / g)
       { ...INGREDIENTS.fish, weight: 140 },
+      { ...INGREDIENTS.fatFish, weight: 100 },
       { ...INGREDIENTS.seaFood, weight: 170 },
       { ...INGREDIENTS.seitan, weight: 50 },
     ],

@@ -14,6 +14,7 @@ export const SASHA_PLAN: IngredientsGroup[] = [
       { ...INGREDIENTS.rice, weight: 60 },
       { ...INGREDIENTS.cereals, weight: 60 },
       { ...INGREDIENTS.seitan, weight: 60 },
+      { ...INGREDIENTS.macaroni, weight: 60 },
       { ...INGREDIENTS.flour, weight: 60 },
       { ...INGREDIENTS.bread, weight: 100 },
       { ...INGREDIENTS.pita, weight: 100 },
