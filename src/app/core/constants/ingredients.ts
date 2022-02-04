@@ -21,9 +21,9 @@ export class INGREDIENTS {
   static readonly yogurt: Ingredient = { id: 16, name: 'йогурт' };
   static readonly vegetables: Ingredient = { id: 17, name: 'овочі' };
   static readonly mushrooms: Ingredient = { id: 18, name: 'гриби' };
-  static readonly eggs: Ingredient = { id: 19, name: 'яйця' };
+  static readonly eggs: Ingredient = { id: 19, name: 'яйця', amountAlias: 'шт' };
   static readonly cottageChees: Ingredient = { id: 20, name: 'сир 5% (зернистий)' };
-  static readonly oil: Ingredient = { id: 20, name: 'олія' };
+  static readonly oil: Ingredient = { id: 20, name: 'олія', amountAlias: 'ложки' };
   static readonly avocado: Ingredient = { id: 21, name: 'авокадо' };
   static readonly olives: Ingredient = { id: 22, name: 'оливки' };
   static readonly mustard: Ingredient = { id: 23, name: 'гірчиця' };

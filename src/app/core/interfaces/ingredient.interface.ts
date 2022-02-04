@@ -1,6 +1,7 @@
 export interface Ingredient {
   id: number;
   name: string;
+  amountAlias?: string;
 }
 
 export interface IngredientPlan extends Ingredient {
