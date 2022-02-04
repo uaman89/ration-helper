@@ -37,9 +37,9 @@ export class INGREDIENTS {
   static readonly sweets: Ingredient = { id: 31, name: 'солодке' };
   static readonly honey: Ingredient = { id: 32, name: 'мед' };
   static readonly fish: Ingredient = { id: 33, name: 'риба 5%' };
-  static readonly fatFish: Ingredient = { id: 33, name: 'риба жирна (6+ %)' };
-  static readonly seaFood: Ingredient = { id: 34, name: 'море-продукти' };
-  static readonly macaroni: Ingredient = { id: 35, name: 'макарони' };
-  static readonly crispbread: Ingredient = { id: 36, name: 'хлібці' };
-  static readonly driedFruits: Ingredient = { id: 37, name: 'сухофрукти' };
+  static readonly fatFish: Ingredient = { id: 34, name: 'риба жирна (6+ %)' };
+  static readonly seaFood: Ingredient = { id: 35, name: 'море-продукти' };
+  static readonly macaroni: Ingredient = { id: 36, name: 'макарони' };
+  static readonly crispbread: Ingredient = { id: 37, name: 'хлібці' };
+  static readonly driedFruits: Ingredient = { id: 38, name: 'сухофрукти' };
 }
