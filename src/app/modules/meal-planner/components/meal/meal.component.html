@@ -1,9 +1,9 @@
 <div
-  *ngFor="let ingredient of ingredients; trackBy: trackById"
+  *ngFor="let ingredient of uniqueIngredientsList; trackBy: trackByIngredientId"
   class="meal-item"
 >
   <app-ingredient
-      [params]="ingredient"
+      [params]="ingredient.plan"
       class="ingredient"
     ></app-ingredient>
     <button

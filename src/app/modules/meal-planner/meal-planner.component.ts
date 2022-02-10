@@ -15,7 +15,7 @@ import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.inter
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MealPlannerComponent implements OnInit {
-  @Input() selectedIngredients?: SelectedIngredientPlan[];
+  @Input() selectedIngredients: SelectedIngredientPlan[] = [];
 
   @Output() ingredientRemoved = new EventEmitter<SelectedIngredientPlan>();
 
