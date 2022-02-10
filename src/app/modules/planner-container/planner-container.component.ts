@@ -21,6 +21,11 @@ export class PlannerContainerComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onChangePlan(selectedPlan: IngredientsGroup[]) {
+    this.plannerService.clearSelectedIngredients();
+    this.currentPlan = selectedPlan;
+  }
+
   onRemoveIngredient({ groupId, id }: SelectedIngredientPlan) {
     this.plannerService.removeIngredientFromSelected(groupId, id);
   }

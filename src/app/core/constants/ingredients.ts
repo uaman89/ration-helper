@@ -5,7 +5,7 @@ import { Ingredient } from '../interfaces/ingredient.interface';
 export class INGREDIENTS {
   static readonly beans: Ingredient = { id: 1, name: 'бобові' };
   static readonly soy: Ingredient = { id: 2, name: 'соя' };
-  static readonly oat: Ingredient = { id: 3, name: 'вівснка' };
+  static readonly oat: Ingredient = { id: 3, name: 'вівсянка' };
   static readonly bulgur: Ingredient = { id: 4, name: 'булгур' };
   static readonly buckweat: Ingredient = { id: 5, name: 'гречка' };
   static readonly rice: Ingredient = { id: 6, name: 'рис' };

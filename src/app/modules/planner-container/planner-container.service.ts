@@ -33,4 +33,8 @@ export class PlannerContainerService {
     });
     this._selectedIngredients$.next(updatedList);
   }
+
+  clearSelectedIngredients() {
+    this._selectedIngredients$.next([]);
+  }
 }
