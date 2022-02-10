@@ -2,7 +2,33 @@
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: $c-black-100;
+    background-color: $c-black-300;
     //color: $c-grey-50;
   }
+
+  .mat-toolbar {
+    background: $c-black-100;
+  }
+
+  app-planner-container {
+    & > .selected-ingredients {
+      background-color: $c-black-300 !important;
+      color: white !important;
+    }
+
+    app-meal-planner {
+      background-color: $c-black-200 !important;
+    }
+  }
+
+  app-ingredients-group.group {
+    background-color: $c-black-200 !important;
+    color: white;
+
+    app-ingredient {
+      background-color: $c-black-100 !important;
+      color: black;
+    }
+  }
+
 }
