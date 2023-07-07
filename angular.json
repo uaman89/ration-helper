@@ -29,7 +29,6 @@
           "options": {
             "outputPath": "dist",
             "baseHref": "/ration-helper/dist/",
-            "deployUrl": "/ration-helper/dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
