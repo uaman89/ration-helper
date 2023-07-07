@@ -10,9 +10,8 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSliderChange } from '@angular/material/slider';
-import { debounceTime } from 'rxjs';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSliderChange, MatSliderRangeThumb, MatSliderThumb } from '@angular/material/slider';
 import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
@@ -69,7 +68,7 @@ export class SelectIngredientDialogComponent implements OnInit {
     }
   }
 
-  onSliderChange({ value }: MatSliderChange) {
+  onSliderChange(value: number) {
     this.form.get('weight')?.patchValue(value);
   }
 }

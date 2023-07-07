@@ -2,7 +2,7 @@
 <mat-divider></mat-divider>
 
 <div class="form" [formGroup]="form">
-  <mat-form-field appearance="standard">
+  <mat-form-field>
     <mat-label>weight:</mat-label>
     <input
       [value]="data.ingredient.weight"
@@ -18,13 +18,17 @@
     }}</mat-error>
   </mat-form-field>
 
-    <mat-slider
-      [min]="0"
-      [max]="data.ingredient.weight"
-      [step]="inputStep"
+  <mat-slider
+    [min]="0"
+    [max]="data.ingredient.weight"
+    [step]="inputStep"
+    #ngSlider
+    ><input
+      matSliderThumb
       [value]="data.ingredient.weight"
-      (change)="onSliderChange($event)"
-    ></mat-slider>
+      (valueChange)="onSliderChange($event)"
+      #ngSliderThumb="matSliderThumb"
+  /></mat-slider>
 </div>
 
 <button
