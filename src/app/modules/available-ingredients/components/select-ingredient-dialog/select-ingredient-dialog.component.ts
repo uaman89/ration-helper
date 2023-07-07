@@ -5,9 +5,9 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -22,7 +22,7 @@ import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectIngredientDialogComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   readonly MIN_WEIGHT = 1;
   inputStep!: number;
@@ -30,7 +30,7 @@ export class SelectIngredientDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SelectIngredientDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: SelectIngredientDialogData,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -53,11 +53,11 @@ export class SelectIngredientDialogComponent implements OnInit {
     } as IngredientPlan);
   }
 
-  c(key: string): FormControl {
-    return this.form.get(key) as FormControl;
+  c(key: string): UntypedFormControl {
+    return this.form.get(key) as UntypedFormControl;
   }
 
-  getErrorMessage(control: FormControl): string {
+  getErrorMessage(control: UntypedFormControl): string {
     const [firstError] = Object.keys(control.errors || {});
     switch (firstError) {
       case 'min':
