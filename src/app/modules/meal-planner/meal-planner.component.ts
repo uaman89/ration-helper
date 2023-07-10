@@ -7,12 +7,16 @@ import {
   Output,
 } from '@angular/core';
 import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
+import { NgIf } from '@angular/common';
+import { MealComponent } from './components/meal/meal.component';
 
 @Component({
-  selector: 'app-meal-planner',
-  templateUrl: './meal-planner.component.html',
-  styleUrls: ['./meal-planner.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-meal-planner',
+    templateUrl: './meal-planner.component.html',
+    styleUrls: ['./meal-planner.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MealComponent, NgIf]
 })
 export class MealPlannerComponent implements OnInit {
   @Input() selectedIngredients: SelectedIngredientPlan[] = [];

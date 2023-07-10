@@ -8,8 +8,8 @@ describe('SelectIngredientDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectIngredientDialogComponent ]
-    })
+    imports: [SelectIngredientDialogComponent]
+})
     .compileComponents();
   });
 

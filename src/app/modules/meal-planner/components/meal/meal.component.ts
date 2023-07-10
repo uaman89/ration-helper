@@ -12,12 +12,17 @@ import {
   SelectedIngredientPlan,
 } from 'src/app/core/interfaces/ingredient.interface';
 import { trackById } from 'src/app/shared/track-by.shared';
+import { MatIconModule } from '@angular/material/icon';
+import { IngredientComponent } from '../../../../core/components/ingredient/ingredient.component';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-meal',
-  templateUrl: './meal.component.html',
-  styleUrls: ['./meal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-meal',
+    templateUrl: './meal.component.html',
+    styleUrls: ['./meal.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, IngredientComponent, MatIconModule]
 })
 export class MealComponent implements OnInit {
   @Input() set ingredients(list: SelectedIngredientPlan[]) {

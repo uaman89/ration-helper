@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,13 +6,18 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  ReactiveFormsModule,
   UntypedFormBuilder,
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSliderChange, MatSliderRangeThumb, MatSliderThumb } from '@angular/material/slider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
 import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Component({
@@ -19,6 +25,16 @@ import { IngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
   templateUrl: './select-ingredient-dialog.component.html',
   styleUrls: ['./select-ingredient-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    MatDividerModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgIf,
+    MatSliderModule,
+    MatButtonModule,
+  ],
 })
 export class SelectIngredientDialogComponent implements OnInit {
   form!: UntypedFormGroup;
@@ -41,7 +57,7 @@ export class SelectIngredientDialogComponent implements OnInit {
       ],
     });
 
-    this.inputStep = weight  >= 40 ? Math.round(weight/4) : 5;
+    this.inputStep = weight >= 40 ? Math.round(weight / 4) : 5;
   }
 
   onConfirm() {

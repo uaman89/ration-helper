@@ -8,7 +8,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import {
   IngredientPlan,
@@ -21,12 +21,16 @@ import {
   SelectIngredientDialogData,
 } from './components/select-ingredient-dialog/select-ingredient-dialog.component';
 import { getCompletionProportion } from './helpers/available-ingredients.helpers';
+import { IngredientsGroupComponent } from './components/ingredients-group/ingredients-group.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-available-ingredients',
   templateUrl: './available-ingredients.component.html',
   styleUrls: ['./available-ingredients.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgFor, IngredientsGroupComponent, MatDialogModule],
 })
 export class AvailableIngredientsComponent
   implements OnInit, OnChanges, OnDestroy
