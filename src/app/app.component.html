@@ -1,7 +1,15 @@
-<mat-toolbar>
-  <span>My Diet Plan</span>
+<mat-toolbar class="toolbar">
+  <span class="toolbar-title">My Diet Plan</span>
+
+  <mat-form-field class="plan-selector">
+    <mat-select [value]="selectedPlan" (valueChange)="onChangePlan($event)" required>
+      <mat-option [value]="availablePlans['yuliia']">Юля</mat-option>
+      <mat-option [value]="availablePlans['sasha']">Саша</mat-option>
+    </mat-select>
+  </mat-form-field>
+
 </mat-toolbar>
 
 <div class="container">
-  <app-planner-container></app-planner-container>
+  <app-planner-container [currentPlan]="selectedPlan"></app-planner-container>
 </div>

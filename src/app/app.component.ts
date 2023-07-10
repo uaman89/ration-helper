@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlannerContainerComponent } from './modules/planner-container/planner-container.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { IngradientSelectService } from './modules/planner-container/planner-container.service';
+import { PlanKeys, availablePlans } from './core/constants/constants';
+import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +15,20 @@ import { PlannerContainerComponent } from './modules/planner-container/planner-c
   standalone: true,
   imports: [
     MatToolbarModule,
+    MatSelectModule,
+    MatOptionModule,
     PlannerContainerComponent,
   ],
 })
 export class AppComponent {
-  title = 'Ration Helper';
+
+  selectedPlan: IngredientsGroup[] = availablePlans[PlanKeys.yuliia];
+  availablePlans = availablePlans;
+
+  constructor( private plannerService: IngradientSelectService){}
+
+  onChangePlan(selectedPlan: IngredientsGroup[]) {
+    this.plannerService.clearSelectedIngredients();
+    this.selectedPlan = selectedPlan;
+  }
 }

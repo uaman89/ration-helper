@@ -15,7 +15,7 @@ import {
   SelectedIngredientPlan,
 } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
-import { PlannerContainerService } from '../planner-container/planner-container.service';
+import { IngradientSelectService } from '../planner-container/planner-container.service';
 import {
   SelectIngredientDialogComponent,
   SelectIngredientDialogData,
@@ -42,7 +42,7 @@ export class AvailableIngredientsComponent
   destroyed$ = new Subject<void>();
 
   constructor(
-    private plannerService: PlannerContainerService,
+    private plannerService: IngradientSelectService,
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef
   ) {}

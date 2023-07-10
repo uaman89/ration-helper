@@ -1,13 +1,3 @@
-<div class="selected-plan">
-  <h3>Selected Plan:</h3>
-  <mat-form-field>
-    <mat-select [value]="currentPlan" (valueChange)="onChangePlan($event)" required>
-      <mat-option [value]="availablePlans['yuliia']">Юля</mat-option>
-      <mat-option [value]="availablePlans['sasha']">Саша</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
 <div class="selected-ingredients">
   <h3>Selected Ingredients:</h3>
   <app-meal-planner

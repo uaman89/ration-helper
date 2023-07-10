@@ -5,7 +5,7 @@ import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.inter
 @Injectable({
   providedIn: 'root',
 })
-export class PlannerContainerService {
+export class IngradientSelectService {
   public get selectedIngredients() {
     return this._selectedIngredients$.value;
   }

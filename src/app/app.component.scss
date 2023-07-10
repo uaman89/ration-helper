@@ -3,6 +3,14 @@
   margin: 0 auto;
 }
 
+.toolbar {
+  display: flex;
+
+  &-title {
+    margin-right: auto;
+  }
+}
+
 @media (max-width: 450px) {
   .container {
     padding: 0 8px;

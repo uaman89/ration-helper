@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PlannerContainerService } from './planner-container.service';
+import { IngradientSelectService } from './planner-container.service';
 
 describe('PlannerContainerService', () => {
-  let service: PlannerContainerService;
+  let service: IngradientSelectService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PlannerContainerService);
+    service = TestBed.inject(IngradientSelectService);
   });
 
   it('should be created', () => {
