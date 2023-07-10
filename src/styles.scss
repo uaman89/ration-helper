@@ -43,8 +43,10 @@ $ration-helper-theme: mat.define-light-theme((
 @include mat.all-component-themes($ration-helper-theme);
 
 /* You can add global styles to this file, and also import other style files */
+@import "/src/app/styles/_material";
 @import "/src/app/styles/dark-mode";
 @import "src/app/styles/global";
+
 
 
 html, body { height: 100%; }

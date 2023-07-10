@@ -12,7 +12,7 @@
       type="number"
       [step]="inputStep"
     />
-    <span matSuffix>g</span>
+    <span matTextSuffix>g</span>
     <mat-error *ngIf="form.get('weight')?.errors">{{
       getErrorMessage(c("weight"))
     }}</mat-error>
