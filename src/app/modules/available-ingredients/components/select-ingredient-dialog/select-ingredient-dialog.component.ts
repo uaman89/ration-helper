@@ -57,7 +57,7 @@ export class SelectIngredientDialogComponent implements OnInit {
       ],
     });
 
-    this.inputStep = weight >= 40 ? Math.round(weight / 4) : 5;
+    this.inputStep = weight < 11 ? 1 : weight / 4;
   }
 
   onConfirm() {
@@ -85,6 +85,11 @@ export class SelectIngredientDialogComponent implements OnInit {
   }
 
   onSliderChange(value: number) {
+    if (value < 1) {
+      value = 1;
+    } else {
+      value = Math.round(value);
+    }
     this.form.get('weight')?.patchValue(value);
   }
 }
