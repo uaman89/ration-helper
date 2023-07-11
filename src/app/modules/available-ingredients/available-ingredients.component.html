@@ -1,8 +1,8 @@
-<div *ngFor="let group of availableIngredients">
-  <app-ingredients-group
-    [label]="group.label"
-    [ingredients]="group.ingredients"
-    (ingredientClick)="onPickIngredient($event, group.id)"
-    class="group"
-  ></app-ingredients-group>
-</div>
+<app-ingredients-group
+  *ngFor="let group of availableIngredients"
+  [label]="group.label"
+  [ingredients]="group.ingredients"
+  (ingredientClick)="onPickIngredient($event, group.id)"
+  class="group"
+  [class.group-selected]="!group.ingredients.length"
+></app-ingredients-group>

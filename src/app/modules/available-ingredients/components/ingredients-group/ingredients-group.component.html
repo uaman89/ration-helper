@@ -1,11 +1,7 @@
-<div
-  *ngIf="label"
-  class="label"
->
-  {{ label }}:
-</div>
 
 <div class="ingredients">
+  <div *ngIf="label && ingredients?.length" class="label">{{ label }}</div>
+
   <app-ingredient
     *ngFor="let item of ingredients"
     [params]="item"
@@ -13,5 +9,6 @@
     class="ingredient"
   ></app-ingredient>
 
-  <span *ngIf="!ingredients?.length">✔ completed</span>
+  <div *ngIf="!ingredients?.length" class="all-selected-label">{{label}}: all selected ✔</div>
 </div>
+
