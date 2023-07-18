@@ -31,8 +31,8 @@ jobs:
         run: npm run build
 
       - name: Archive build
-        if: success()
-        uses: actions/upload-artifact@v1
+      if: success()
+      - uses: actions/upload-artifact@v1
         with:
           name: deploy_dist
           path: dist
@@ -42,12 +42,12 @@ jobs:
     needs: build
     steps:
     - name: Download build
-      uses: actions/download-artifact@v1
+    - uses: actions/download-artifact@v1
       with:
         name: deploy_dist
 
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+    - uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
