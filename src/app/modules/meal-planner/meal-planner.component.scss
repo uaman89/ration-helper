@@ -1,7 +1,8 @@
 @import "/src/app/styles/colors";
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border-radius: 4px;
   background-color: $c-grey-100;
   box-shadow: 0px 8px 20px -8px rgb(88 88 88 / 50%);
@@ -16,4 +17,9 @@
 
 .selected-ingredients {
   font-size: 20px;
+}
+
+.storage-button {
+  align-self: flex-end;
+  margin-top: 16px;
 }

@@ -1,13 +1,12 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
-  OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
-import { NgIf } from '@angular/common';
 import { MealComponent } from './components/meal/meal.component';
 
 @Component({
@@ -16,18 +15,24 @@ import { MealComponent } from './components/meal/meal.component';
     styleUrls: ['./meal-planner.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MealComponent, NgIf]
+    imports: [NgIf, MealComponent],
 })
-export class MealPlanComponent implements OnInit {
+export class MealPlanComponent {
   @Input() selectedIngredients: SelectedIngredientPlan[] = [];
 
   @Output() ingredientRemoved = new EventEmitter<SelectedIngredientPlan>();
+  @Output() saved = new EventEmitter<void>();
 
   constructor() {}
 
-  ngOnInit(): void {}
-
   onRemoveIngredient(removedIngredient: SelectedIngredientPlan) {
     this.ingredientRemoved.emit(removedIngredient);
+  }
+
+  onSave(): void {
+    this.saved.emit();
+  }
+
+  onLoad(): void {
   }
 }

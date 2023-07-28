@@ -1,11 +1,13 @@
+import { NgForOf } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { PlannerContainerComponent } from './modules/planner-container/planner-container.component';
-import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { IngradientSelectService } from './modules/planner-container/planner-container.service';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { PlanKeys, availablePlans } from './core/constants/constants';
 import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
+import { PlannerContainerComponent } from './modules/planner-container/planner-container.component';
+import { IngradientSelectService } from './modules/planner-container/planner-container.service';
+import { AvailablePlan } from './core/interfaces/available-plan.interface';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
+    NgForOf,
     MatToolbarModule,
     MatSelectModule,
     MatOptionModule,
@@ -20,14 +23,15 @@ import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
   ],
 })
 export class AppComponent {
-
   selectedPlan: IngredientsGroup[] = availablePlans[PlanKeys.yuliia];
-  availablePlans = availablePlans;
+  availablePlans: AvailablePlan[] = Object.entries(
+    availablePlans,
+  ).map(([key, value]) => ({ key, value }));
 
-  constructor( private plannerService: IngradientSelectService){}
+  constructor(private plannerService: IngradientSelectService) {}
 
-  onChangePlan(selectedPlan: IngredientsGroup[]) {
+  onChangePlan({key, value}: AvailablePlan) {
     this.plannerService.clearSelectedIngredients();
-    this.selectedPlan = selectedPlan;
+    this.selectedPlan = value;
   }
 }

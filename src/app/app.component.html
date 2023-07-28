@@ -3,8 +3,7 @@
 
   <mat-form-field class="plan-selector">
     <mat-select [value]="selectedPlan" (valueChange)="onChangePlan($event)" required>
-      <mat-option [value]="availablePlans['yuliia']">Юля</mat-option>
-      <mat-option [value]="availablePlans['sasha']">Саша</mat-option>
+      <mat-option *ngFor="let plan of availablePlans" [value]="plan">{{plan.key}}</mat-option>
     </mat-select>
   </mat-form-field>
 

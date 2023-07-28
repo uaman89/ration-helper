@@ -3,6 +3,7 @@
   <app-meal-plan
     [selectedIngredients]="(selectedIngredients$ | async)!"
     (ingredientRemoved)="onRemoveIngredient($event)"
+    (planSaved)="onSavePlan()"
   ></app-meal-plan>
 </div>
 

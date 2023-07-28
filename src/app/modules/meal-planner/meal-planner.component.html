@@ -1,8 +1,13 @@
-<app-meal class="selected-ingredients"
-  [ingredients]="selectedIngredients"
-  (ingredientRemoved)="onRemoveIngredient($event)"
-></app-meal>
+<ng-container *ngIf="selectedIngredients?.length; else noSelected">
+  <app-meal
+    class="selected-ingredients"
+    [ingredients]="selectedIngredients"
+    (ingredientRemoved)="onRemoveIngredient($event)"
+  ></app-meal>
+  <button mat-stroked-button (click)="onSave()" class="storage-button">Save</button>
+</ng-container>
 
-<span *ngIf="!selectedIngredients?.length" class="message">
-  No selected ingredients
-</span>
+<ng-template #noSelected>
+  <span class="message"> No selected ingredients </span>
+  <button mat-stroked-button (click)="onLoad()" class="storage-button">Load</button>
+</ng-template>
