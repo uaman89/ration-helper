@@ -18,6 +18,8 @@ export class IngradientSelectService {
     []
   );
 
+  selectedPlanName: string = '';
+
   constructor() {}
 
   addIngredientToSelected(newIngredient: SelectedIngredientPlan) {

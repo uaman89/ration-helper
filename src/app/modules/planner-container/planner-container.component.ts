@@ -4,7 +4,7 @@ import {
   Component,
   Input,
   OnInit,
-  Inject
+  Inject,
 } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { availablePlans } from 'src/app/core/constants/constants';
@@ -29,19 +29,19 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorageService';
     AvailableIngredientsComponent,
     AsyncPipe,
   ],
-  providers: [
-    { provide: STORAGE_SERVICE, useClass: LocalStorageService }
-  ]
+  providers: [{ provide: STORAGE_SERVICE, useClass: LocalStorageService }],
 })
 export class PlannerContainerComponent implements OnInit {
-
   selectedIngredients$ = this.plannerService.selectedIngredients$;
 
   @Input() currentPlan?: IngredientsGroup[];
 
   readonly availablePlans = availablePlans;
 
-  constructor(private plannerService: IngradientSelectService, @Inject(STORAGE_SERVICE) private storageService: StorageService) {}
+  constructor(
+    private plannerService: IngradientSelectService,
+    @Inject(STORAGE_SERVICE) private storageService: StorageService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -50,7 +50,8 @@ export class PlannerContainerComponent implements OnInit {
   }
 
   onSavePlan() {
-    //const planId =
-    //this.storageService.save();
+    const planId = `${this.plannerService.selectedPlanName}_${new Date().toISOString()}`;
+    this.storageService.save(planId, this.plannerService.selectedIngredients);
+    console.info('plan saved as ', planId);
   }
 }

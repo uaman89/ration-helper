@@ -1,5 +1,5 @@
 import { NgForOf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,16 +22,21 @@ import { AvailablePlan } from './core/interfaces/available-plan.interface';
     PlannerContainerComponent,
   ],
 })
-export class AppComponent {
-  selectedPlan: IngredientsGroup[] = availablePlans[PlanKeys.yuliia];
-  availablePlans: AvailablePlan[] = Object.entries(
-    availablePlans,
-  ).map(([key, value]) => ({ key, value }));
+export class AppComponent implements OnInit {
+  selectedPlan?: IngredientsGroup[];
+  availablePlans: AvailablePlan[] = Object.entries(availablePlans).map(
+    ([key, value]) => ({ key, value }),
+  );
 
   constructor(private plannerService: IngradientSelectService) {}
 
-  onChangePlan({key, value}: AvailablePlan) {
+  ngOnInit() {
+    this.onChangePlan(this.availablePlans[1]);
+  }
+
+  onChangePlan({ key, value }: AvailablePlan) {
     this.plannerService.clearSelectedIngredients();
+    this.plannerService.selectedPlanName = key;
     this.selectedPlan = value;
   }
 }
