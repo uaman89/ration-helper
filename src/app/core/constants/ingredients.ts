@@ -23,7 +23,7 @@ export class INGREDIENTS {
   static readonly mushrooms: Ingredient = { id: 18, name: 'гриби' };
   static readonly eggs: Ingredient = { id: 19, name: 'яйця', amountAlias: 'шт' };
   static readonly cottageChees: Ingredient = { id: 20, name: 'сир 5% (зернистий)' };
-  static readonly oil: Ingredient = { id: 20, name: 'олія', amountAlias: 'ложки' };
+  static readonly oil: Ingredient = { id: 39, name: 'олія', amountAlias: 'ложки' };
   static readonly avocado: Ingredient = { id: 21, name: 'авокадо' };
   static readonly olives: Ingredient = { id: 22, name: 'оливки' };
   static readonly mustard: Ingredient = { id: 23, name: 'гірчиця' };
