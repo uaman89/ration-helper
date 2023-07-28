@@ -1,9 +1,9 @@
 <div class="selected-ingredients">
   <h3>Selected Ingredients:</h3>
-  <app-meal-planner
+  <app-meal-plan
     [selectedIngredients]="(selectedIngredients$ | async)!"
     (ingredientRemoved)="onRemoveIngredient($event)"
-  ></app-meal-planner>
+  ></app-meal-plan>
 </div>
 
 <h3>Available Ingredients:</h3>
