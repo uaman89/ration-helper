@@ -5,7 +5,7 @@ import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.inte
 import { IngradientSelectService } from './planner-container.service';
 import { AsyncPipe } from '@angular/common';
 import { AvailableIngredientsComponent } from '../available-ingredients/available-ingredients.component';
-import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
+import { MealPlanComponent } from '../meal-planner/meal-planner.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     styleUrls: ['./planner-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MatFormFieldModule, MealPlannerComponent, AvailableIngredientsComponent, AsyncPipe]
+    imports: [MatFormFieldModule, MealPlanComponent, AvailableIngredientsComponent, AsyncPipe]
 })
 export class PlannerContainerComponent implements OnInit {
   selectedIngredients$ = this.plannerService.selectedIngredients$;

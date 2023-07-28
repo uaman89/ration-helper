@@ -11,14 +11,14 @@ import { NgIf } from '@angular/common';
 import { MealComponent } from './components/meal/meal.component';
 
 @Component({
-    selector: 'app-meal-planner',
+    selector: 'app-meal-plan',
     templateUrl: './meal-planner.component.html',
     styleUrls: ['./meal-planner.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [MealComponent, NgIf]
 })
-export class MealPlannerComponent implements OnInit {
+export class MealPlanComponent implements OnInit {
   @Input() selectedIngredients: SelectedIngredientPlan[] = [];
 
   @Output() ingredientRemoved = new EventEmitter<SelectedIngredientPlan>();
