@@ -1,6 +1,8 @@
+import { Inject, Injectable } from '@angular/core';
 import { StorageService } from '../interfaces/data-saver.interface';
 import { IngredientsGroup } from '../interfaces/ingredients-group.interace';
 
+@Injectable()
 export class LocalStorageService implements StorageService {
   save(planId: string, data: object) {
     localStorage.setItem(planId, JSON.stringify(data));

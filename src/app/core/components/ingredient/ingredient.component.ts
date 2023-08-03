@@ -15,4 +15,5 @@ export class IngredientComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
 }

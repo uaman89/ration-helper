@@ -31,7 +31,7 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorageService';
   ],
   providers: [{ provide: STORAGE_SERVICE, useClass: LocalStorageService }],
 })
-export class PlannerContainerComponent implements OnInit {
+export class PlannerContainerComponent {
   selectedIngredients$ = this.plannerService.selectedIngredients$;
 
   @Input() currentPlan?: IngredientsGroup[];
@@ -43,14 +43,15 @@ export class PlannerContainerComponent implements OnInit {
     @Inject(STORAGE_SERVICE) private storageService: StorageService,
   ) {}
 
-  ngOnInit(): void {}
 
   onRemoveIngredient({ groupId, id }: SelectedIngredientPlan) {
     this.plannerService.removeIngredientFromSelected(groupId, id);
   }
 
   onSavePlan() {
-    const planId = `${this.plannerService.selectedPlanName}_${new Date().toISOString()}`;
+    const planId = `${
+      this.plannerService.selectedPlanName
+    }_${new Date().toISOString()}`;
     this.storageService.save(planId, this.plannerService.selectedIngredients);
     console.info('plan saved as ', planId);
   }
