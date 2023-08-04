@@ -1,10 +1,24 @@
-<div class="selected-ingredients">
+<div class="selected-ingredients-container">
   <h3>Selected Ingredients:</h3>
-  <app-meal-plan
-    [selectedIngredients]="(selectedIngredients$ | async)!"
-    (ingredientRemoved)="onRemoveIngredient($event)"
-    (saved)="onSavePlan()"
-  ></app-meal-plan>
+  <ng-container *ngIf="selectedIngredients$ | async as selectedIngredients">
+    <ng-container *ngIf="selectedIngredients.length; else noSelected">
+      <app-meal
+        class="selected-ingredients"
+        [ingredients]="(selectedIngredients$ | async)!"
+        (ingredientRemoved)="onRemoveIngredient($event)"
+      ></app-meal>
+      <button mat-stroked-button (click)="onSavePlan()" class="storage-button">
+        Save
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noSelected>
+    <span class="message"> No selected ingredients </span>
+    <button mat-stroked-button (click)="onOpenSavedPlansDialog()" class="storage-button">
+      Load
+    </button>
+  </ng-template>
 </div>
 
 <h3>Available Ingredients:</h3>

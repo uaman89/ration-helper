@@ -1,21 +1,23 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
   Inject,
+  Input,
 } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { STORAGE_SERVICE } from 'src/app/core/constants/config';
 import { availablePlans } from 'src/app/core/constants/constants';
 import { StorageService } from 'src/app/core/interfaces/data-saver.interface';
 import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 import { IngredientsGroup } from 'src/app/core/interfaces/ingredients-group.interace';
-import { AvailableIngredientsComponent } from '../available-ingredients/available-ingredients.component';
-import { MealPlanComponent } from '../meal-planner/meal-planner.component';
-import { IngradientSelectService } from './planner-container.service';
-import { STORAGE_SERVICE } from 'src/app/core/constants/config';
 import { LocalStorageService } from 'src/app/core/services/LocalStorageService';
+import { AvailableIngredientsComponent } from '../available-ingredients/available-ingredients.component';
+import { MealComponent } from '../meal/meal.component';
+import { IngradientSelectService } from './planner-container.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { LoadDataDialogComponent } from '../load-data-dialog/load-data-dialog.component';
 
 @Component({
   selector: 'app-planner-container',
@@ -25,11 +27,13 @@ import { LocalStorageService } from 'src/app/core/services/LocalStorageService';
   standalone: true,
   imports: [
     MatFormFieldModule,
-    MealPlanComponent,
+    MatButtonModule,
+    MatDialogModule,
+    MealComponent,
     AvailableIngredientsComponent,
     AsyncPipe,
+    NgIf,
   ],
-  providers: [{ provide: STORAGE_SERVICE, useClass: LocalStorageService }],
 })
 export class PlannerContainerComponent {
   selectedIngredients$ = this.plannerService.selectedIngredients$;
@@ -41,8 +45,8 @@ export class PlannerContainerComponent {
   constructor(
     private plannerService: IngradientSelectService,
     @Inject(STORAGE_SERVICE) private storageService: StorageService,
+    private dialog: MatDialog
   ) {}
-
 
   onRemoveIngredient({ groupId, id }: SelectedIngredientPlan) {
     this.plannerService.removeIngredientFromSelected(groupId, id);
@@ -54,5 +58,9 @@ export class PlannerContainerComponent {
     }_${new Date().toISOString()}`;
     this.storageService.save(planId, this.plannerService.selectedIngredients);
     console.info('plan saved as ', planId);
+  }
+
+  onOpenSavedPlansDialog() {
+    this.dialog.open(LoadDataDialogComponent);
   }
 }

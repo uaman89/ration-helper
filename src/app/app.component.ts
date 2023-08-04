@@ -8,6 +8,8 @@ import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
 import { PlannerContainerComponent } from './modules/planner-container/planner-container.component';
 import { IngradientSelectService } from './modules/planner-container/planner-container.service';
 import { AvailablePlan } from './core/interfaces/available-plan.interface';
+import { STORAGE_SERVICE } from './core/constants/config';
+import { LocalStorageService } from './core/services/LocalStorageService';
 
 @Component({
   selector: 'app-root',

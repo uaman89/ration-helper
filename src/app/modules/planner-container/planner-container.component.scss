@@ -1,7 +1,22 @@
+@import "/src/app/styles/colors";
 
 :host {
   display: block;
   padding: 16px 0;
+}
+
+.message {
+  display: block;
+  padding: 8px;
+}
+
+.selected-ingredients {
+  font-size: 20px;
+}
+
+.storage-button {
+  align-self: flex-end;
+  margin-top: 16px;
 }
 
 .selected-plan {
@@ -15,12 +30,16 @@
   }
 }
 
-.selected-ingredients {
+.selected-ingredients-container {
   position: sticky;
   top: -48px;
 
-
-  padding: 16px 0;
-  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: $c-grey-100;
+  box-shadow: 0px 8px 20px -8px rgb(88 88 88 / 50%);
+  max-width: 480px;
+  padding: 16px 8px;
+  margin: 0 auto 16px;
 }
-
