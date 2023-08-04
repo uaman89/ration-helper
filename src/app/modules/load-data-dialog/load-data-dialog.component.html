@@ -1,6 +1,10 @@
 <h2>Saved Plans:</h2>
 <div *ngFor="let plan of savedPlans">
-  - {{plan}}
+  <button
+  (click)="loadPlan(plan)"
+  mat-stroked-button
+  color="primary"
+  >{{plan}}</button>
 </div>
 
 <div *ngIf="!savedPlans.length">No saved plans</div>

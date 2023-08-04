@@ -2,13 +2,13 @@
   <span class="toolbar-title">My Diet Plan</span>
 
   <mat-form-field class="plan-selector">
-    <mat-select [value]="selectedPlan" (valueChange)="onChangePlan($event)" required>
-      <mat-option *ngFor="let plan of availablePlans" [value]="plan">{{plan.key}}</mat-option>
+    <mat-select [value]="getPlanName()" (valueChange)="onChangePlan($event)" required>
+      <mat-option *ngFor="let plan of planKeys" [value]="plan">{{plan}}</mat-option>
     </mat-select>
   </mat-form-field>
 
 </mat-toolbar>
 
 <div class="container">
-  <app-planner-container [currentPlan]="selectedPlan"></app-planner-container>
+  <app-planner-container [currentPlan]="getPlanValue()"></app-planner-container>
 </div>

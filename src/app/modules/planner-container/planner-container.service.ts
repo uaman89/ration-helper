@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PlanKeys } from 'src/app/core/constants/constants';
 import { SelectedIngredientPlan } from 'src/app/core/interfaces/ingredient.interface';
 
 @Injectable({
@@ -15,12 +16,10 @@ export class IngradientSelectService {
   }
 
   private _selectedIngredients$ = new BehaviorSubject<SelectedIngredientPlan[]>(
-    []
+    [],
   );
 
   selectedPlanName: string = '';
-
-  constructor() {}
 
   addIngredientToSelected(newIngredient: SelectedIngredientPlan) {
     this._selectedIngredients$.next([
@@ -29,14 +28,18 @@ export class IngradientSelectService {
     ]);
   }
 
-  removeIngredientFromSelected(groupId: number, ingredientId: number) {
+  removeIngredientFromSelected(groupId: number, ingredientId: number): void {
     const updatedList = this.selectedIngredients.filter((d) => {
       return !(d.groupId === groupId && d.id === ingredientId);
     });
     this._selectedIngredients$.next(updatedList);
   }
 
-  clearSelectedIngredients() {
+  clearSelectedIngredients(): void {
     this._selectedIngredients$.next([]);
+  }
+
+  setSelectedIngredients(newList: SelectedIngredientPlan[]): void {
+    this._selectedIngredients$.next(newList);
   }
 }

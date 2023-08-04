@@ -1,23 +1,19 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { StorageService } from '../interfaces/data-saver.interface';
-import { IngredientsGroup } from '../interfaces/ingredients-group.interace';
+import { SelectedIngredientPlan } from '../interfaces/ingredient.interface';
 
 @Injectable()
 export class LocalStorageService implements StorageService {
   readonly savedPlansKey = '__saved-plans-ids';
-
-  constructor(){
-
-  }
 
   save(planId: string, data: object) {
     localStorage.setItem(planId, JSON.stringify(data));
     this.updateSavedIdList(planId);
   }
 
-  load(planId: string): IngredientsGroup[] {
+  load(planId: string): SelectedIngredientPlan[] {
     const savedData = localStorage.getItem(planId);
-    return savedData ? (JSON.parse(savedData) as IngredientsGroup[]) : [];
+    return savedData ? (JSON.parse(savedData) as SelectedIngredientPlan[]) : [];
   }
 
   getSavedPlanList(): string[] {
@@ -25,7 +21,7 @@ export class LocalStorageService implements StorageService {
     return value ? JSON.parse(value) : [];
   }
 
-  private updateSavedIdList(newId:string){
+  private updateSavedIdList(newId: string) {
     const keysList = this.getSavedPlanList();
     keysList.push(newId);
     localStorage.setItem(this.savedPlansKey, JSON.stringify(keysList));

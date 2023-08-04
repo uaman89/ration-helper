@@ -1,20 +1,21 @@
 import { NgForOf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { PlanKeys, availablePlans } from './core/constants/constants';
+import {
+  PlanKeys as PlanKey,
+  availablePlans,
+} from './core/constants/constants';
 import { IngredientsGroup } from './core/interfaces/ingredients-group.interace';
 import { PlannerContainerComponent } from './modules/planner-container/planner-container.component';
 import { IngradientSelectService } from './modules/planner-container/planner-container.service';
-import { AvailablePlan } from './core/interfaces/available-plan.interface';
-import { STORAGE_SERVICE } from './core/constants/config';
-import { LocalStorageService } from './core/services/LocalStorageService';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     NgForOf,
@@ -25,20 +26,31 @@ import { LocalStorageService } from './core/services/LocalStorageService';
   ],
 })
 export class AppComponent implements OnInit {
-  selectedPlan?: IngredientsGroup[];
-  availablePlans: AvailablePlan[] = Object.entries(availablePlans).map(
-    ([key, value]) => ({ key, value }),
-  );
+  planKeys = Object.keys(availablePlans);
 
   constructor(private plannerService: IngradientSelectService) {}
 
   ngOnInit() {
-    this.onChangePlan(this.availablePlans[1]);
+    this.setPlan(PlanKey.sasha);
   }
 
-  onChangePlan({ key, value }: AvailablePlan) {
+  onChangePlan(key: PlanKey) {
     this.plannerService.clearSelectedIngredients();
+    this.setPlan(key);
+  }
+
+  getPlanName(): string {
+    return this.plannerService.selectedPlanName;
+  }
+
+  getPlanValue(): IngredientsGroup[] {
+    if (!this.getPlanName()) {
+      return [];
+    }
+    return availablePlans[this.getPlanName() as PlanKey];
+  }
+
+  private setPlan(key: PlanKey) {
     this.plannerService.selectedPlanName = key;
-    this.selectedPlan = value;
   }
 }
