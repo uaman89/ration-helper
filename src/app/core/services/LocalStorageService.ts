@@ -12,6 +12,7 @@ export class LocalStorageService implements StorageService {
 
   save(planId: string, data: object) {
     localStorage.setItem(planId, JSON.stringify(data));
+    this.updateSavedIdList(planId);
   }
 
   load(planId: string): IngredientsGroup[] {

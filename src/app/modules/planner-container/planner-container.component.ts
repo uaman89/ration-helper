@@ -55,7 +55,7 @@ export class PlannerContainerComponent {
   onSavePlan() {
     const planId = `${
       this.plannerService.selectedPlanName
-    }_${new Date().toISOString()}`;
+    }_${new Date().toISOString().slice(0,-5)}`;
     this.storageService.save(planId, this.plannerService.selectedIngredients);
     console.info('plan saved as ', planId);
   }
